@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>محاسبه‌گر کالری روزانه</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Tahoma, Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: #f4f6f8;
+      color: #222;
+    }
+
+    .container {
+      max-width: 520px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 8px;
+      font-size: 25px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 25px;
+      font-size: 14px;
+    }
+
+    label {
+      display: block;
+      margin-top: 17px;
+      margin-bottom: 7px;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      font-size: 16px;
+      background: #fff;
+    }
+
+    .gender-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .gender-buttons button {
+      flex: 1;
+      padding: 13px;
+      border: 2px solid #ddd;
+      background: white;
+      border-radius: 12px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .gender-buttons button.active {
+      border-color: #2196f3;
+      background: #eaf5ff;
+    }
+
+    .calculate {
+      width: 100%;
+      margin-top: 25px;
+      padding: 15px;
+      border: none;
+      border-radius: 14px;
+      background: #2196f3;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .calculate:active {
+      transform: scale(0.98);
+    }
+
+    #result {
+      display: none;
+      margin-top: 25px;
+    }
+
+    .result-title {
+      text-align: center;
+      font-size: 21px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .result-box {
+      background: #f7f9fb;
+      border-radius: 14px;
+      padding: 15px;
+      margin-bottom: 10px;
+    }
+
+    .result-box strong {
+      display: block;
+      font-size: 20px;
+      margin-top: 5px;
+    }
+
+    .warning {
+      margin-top: 18px;
+      padding: 12px;
+      background: #fff8e1;
+      border-radius: 12px;
+      font-size: 12px;
+      line-height: 1.8;
+      color: #665500;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 18px;
+      color: #888;
+      font-size: 12px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+  <div class="card">
+
+    <h1>🔥 محاسبه‌گر کالری روزانه</h1>
+
+    <div class="subtitle">
+      اطلاعات خود را وارد کنید تا نیاز تقریبی روزانه شما محاسبه شود.
+    </div>
+
+    <label>جنسیت</label>
+
+    <div class="gender-buttons">
+      <button type="button" id="male" onclick="selectGender('male')">
+        👨 مرد
+      </button>
+
+      <button type="button" id="female" onclick="selectGender('female')">
+        👩 زن
+      </button>
+    </div>
+
+    <label for="age">سن</label>
+    <input type="number" id="age" placeholder="مثلاً 35" min="15" max="100">
+
+    <label for="height">قد (سانتی‌متر)</label>
+    <input type="number" id="height" placeholder="مثلاً 175" min="100" max="230">
+
+    <label for="weight">وزن (کیلوگرم)</label>
+    <input type="number" id="weight" placeholder="مثلاً 80" min="30" max="300">
+
+    <label for="activity">سطح فعالیت روزانه</label>
+
+    <select id="activity">
+      <option value="">انتخاب کنید</option>
+      <option value="1.2">🛋 کم‌تحرک — ورزش بسیار کم</option>
+      <option value="1.375">🚶 فعالیت سبک — ۱ تا ۳ روز در هفته</option>
+      <option value="1.55">🏃 فعالیت متوسط — ۳ تا ۵ روز در هفته</option>
+      <option value="1.725">🏋️ فعالیت زیاد — ۶ تا ۷ روز در هفته</option>
+      <option value="1.9">🔥 فعالیت بسیار زیاد — فعالیت شدید یا کار فیزیکی</option>
+    </select>
+
+    <label for="goal">هدف شما</label>
+
+    <select id="goal">
+      <option value="">انتخاب کنید</option>
+      <option value="lose">📉 کاهش وزن</option>
+      <option value="maintain">⚖️ حفظ وزن</option>
+      <option value="gain">📈 افزایش وزن</option>
+    </select>
+
+    <button class="calculate" onclick="calculateCalories()">
+      🔥 محاسبه کالری من
+    </button>
+
+    <div id="result">
+
+      <div class="result-title">
+        🎯 نتیجه محاسبه شما
+      </div>
+
+      <div class="result-box">
+        🔥 کالری پایه بدن (BMR)
+        <strong id="bmr"></strong>
+      </div>
+
+      <div class="result-box">
+        ⚡ کالری موردنیاز برای حفظ وزن
+        <strong id="tdee"></strong>
+      </div>
+
+      <div class="result-box">
+        📉 کالری پیشنهادی برای کاهش وزن
+        <strong id="loseCalories"></strong>
+      </div>
+
+      <div class="result-box">
+        📈 کالری پیشنهادی برای افزایش وزن
+        <strong id="gainCalories"></strong>
+      </div>
+
+      <div class="result-box">
+        ⚖️ شاخص توده بدنی (BMI)
+        <strong id="bmi"></strong>
+        <span id="bmiStatus"></span>
+      </div>
+
+      <div class="warning">
+        ⚠️ این نتایج تخمینی هستند و جایگزین ارزیابی پزشک یا متخصص تغذیه نیستند.
+        نیاز واقعی بدن می‌تواند بر اساس شرایط پزشکی، داروها، ترکیب بدن و عوامل دیگر متفاوت باشد.
+      </div>
+
+    </div>
+
+    <div class="footer">
+      محاسبه‌گر کالری روزانه
+    </div>
+
+  </div>
+</div>
+
+<script>
+
+let gender = "";
+
+function selectGender(selectedGender) {
+
+  gender = selectedGender;
+
+  document.getElementById("male").classList.remove("active");
+  document.getElementById("female").classList.remove("active");
+
+  if (selectedGender === "male") {
+    document.getElementById("male").classList.add("active");
+  } else {
+    document.getElementById("female").classList.add("active");
+  }
+}
+
+function calculateCalories() {
+
+  const age = Number(document.getElementById("age").value);
+  const height = Number(document.getElementById("height").value);
+  const weight = Number(document.getElementById("weight").value);
+
+  const activity = Number(document.getElementById("activity").value);
+  const goal = document.getElementById("goal").value;
+
+  if (!gender) {
+    alert("لطفاً جنسیت خود را انتخاب کنید.");
+    return;
+  }
+
+  if (!age || !height || !weight) {
+    alert("لطفاً سن، قد و وزن را وارد کنید.");
+    return;
+  }
+
+  if (!activity) {
+    alert("لطفاً سطح فعالیت خود را انتخاب کنید.");
+    return;
+  }
+
+  if (!goal) {
+    alert("لطفاً هدف خود را انتخاب کنید.");
+    return;
+  }
+
+  let bmr;
+
+  if (gender === "male") {
+
+    bmr = (10 * weight) +
+          (6.25 * height) -
+          (5 * age) +
+          5;
+
+  } else {
+
+    bmr = (10 * weight) +
+          (6.25 * height) -
+          (5 * age) -
+          161;
+  }
+
+  const tdee = bmr * activity;
+
+  const loseCalories = tdee * 0.85;
+  const gainCalories = tdee * 1.12;
+
+  const heightInMeters = height / 100;
+
+  const bmi = weight /
+              (heightInMeters * heightInMeters);
+
+  let bmiStatus = "";
+
+  if (bmi < 18.5) {
+    bmiStatus = "کمبود وزن";
+  } else if (bmi < 25) {
+    bmiStatus = "محدوده معمول";
+  } else if (bmi < 30) {
+    bmiStatus = "اضافه‌وزن";
+  } else {
+    bmiStatus = "چاقی";
+  }
+
+  document.getElementById("bmr").innerText =
+    Math.round(bmr) + " کالری";
+
+  document.getElementById("tdee").innerText =
+    Math.round(tdee) + " کالری";
+
+  document.getElementById("loseCalories").innerText =
+    Math.round(loseCalories) + " کالری";
+
+  document.getElementById("gainCalories").innerText =
+    Math.round(gainCalories) + " کالری";
+
+  document.getElementById("bmi").innerText =
+    bmi.toFixed(1);
+
+  document.getElementById("bmiStatus").innerText =
+    " — " + bmiStatus;
+
+  document.getElementById("result").style.display =
+    "block";
+
+  document.getElementById("result").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+</script>
+
+</body>
+</html>
