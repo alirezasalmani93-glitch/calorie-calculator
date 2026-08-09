@@ -1,168 +1,188 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>نیروانا | محاسبه‌گر کالری</title>
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>نیروانا | محاسبه کالری</title>
 
 <style>
+
 *{
-  box-sizing:border-box;
-  font-family:Tahoma,Arial,sans-serif;
+box-sizing:border-box;
+font-family:Tahoma,Arial,sans-serif;
 }
 
 body{
-  margin:0;
-  background:#f3f6f4;
-  color:#222;
+margin:0;
+background:#f3f6f4;
+color:#222;
 }
 
 .container{
-  max-width:520px;
-  margin:auto;
-  padding:18px;
+max-width:520px;
+margin:auto;
+padding:18px;
 }
 
 .card{
-  background:white;
-  border-radius:24px;
-  padding:22px;
-  box-shadow:0 8px 30px rgba(0,0,0,.08);
+background:#fff;
+border-radius:22px;
+padding:22px;
+box-shadow:0 5px 25px rgba(0,0,0,.08);
 }
 
 .logo{
-  text-align:center;
-  font-size:34px;
-  margin-bottom:5px;
+text-align:center;
+font-size:35px;
 }
 
 .brand{
-  text-align:center;
-  font-size:26px;
-  font-weight:bold;
-  margin-bottom:4px;
+text-align:center;
+font-size:27px;
+font-weight:bold;
+margin-top:5px;
 }
 
 .subtitle{
-  text-align:center;
-  color:#777;
-  font-size:13px;
-  margin-bottom:25px;
-  line-height:1.8;
+text-align:center;
+color:#777;
+font-size:13px;
+line-height:1.8;
+margin:8px 0 25px;
 }
 
 label{
-  display:block;
-  font-weight:bold;
-  margin-top:17px;
-  margin-bottom:7px;
+display:block;
+font-weight:bold;
+margin-top:17px;
+margin-bottom:7px;
 }
 
-input,select{
-  width:100%;
-  padding:14px;
-  border:1px solid #ddd;
-  border-radius:13px;
-  font-size:16px;
-  background:#fff;
+input,
+select{
+width:100%;
+padding:14px;
+border:1px solid #ddd;
+border-radius:12px;
+font-size:16px;
+background:#fff;
 }
 
 .gender{
-  display:flex;
-  gap:10px;
+display:flex;
+gap:10px;
 }
 
-.gender button{
-  flex:1;
-  padding:14px;
-  border:2px solid #ddd;
-  background:white;
-  border-radius:13px;
-  font-size:16px;
+.gender label{
+margin:0;
+flex:1;
 }
 
-.gender button.active{
-  border-color:#278a5b;
-  background:#edf8f1;
+.gender input{
+display:none;
+}
+
+.gender span{
+display:block;
+text-align:center;
+padding:14px;
+border:2px solid #ddd;
+border-radius:12px;
+cursor:pointer;
+font-size:16px;
+}
+
+.gender input:checked + span{
+border-color:#278a5b;
+background:#edf8f1;
 }
 
 .calculate{
-  width:100%;
-  border:0;
-  margin-top:25px;
-  padding:16px;
-  border-radius:14px;
-  background:#278a5b;
-  color:white;
-  font-size:18px;
-  font-weight:bold;
+width:100%;
+margin-top:25px;
+padding:16px;
+border:0;
+border-radius:14px;
+background:#278a5b;
+color:white;
+font-size:18px;
+font-weight:bold;
+cursor:pointer;
 }
 
-.result{
-  display:none;
-  margin-top:25px;
+#result{
+display:none;
+margin-top:25px;
 }
 
-.result-title{
-  text-align:center;
-  font-size:22px;
-  font-weight:bold;
-  margin-bottom:18px;
+.title{
+text-align:center;
+font-size:21px;
+font-weight:bold;
+margin-bottom:15px;
 }
 
 .box{
-  background:#f6f8f7;
-  border-radius:15px;
-  padding:15px;
-  margin-bottom:10px;
+background:#f6f8f7;
+border-radius:14px;
+padding:15px;
+margin-bottom:10px;
 }
 
 .box strong{
-  display:block;
-  font-size:21px;
-  margin-top:6px;
+display:block;
+font-size:21px;
+margin-top:6px;
 }
 
-.main-result{
-  background:#edf8f1;
-  border:1px solid #d5eddf;
+.main{
+background:#edf8f1;
+border:1px solid #d5eddf;
 }
 
-.status{
-  display:block;
-  margin-top:5px;
-  color:#666;
-  font-size:14px;
+.small{
+font-size:13px;
+color:#777;
+margin-top:5px;
+line-height:1.7;
 }
 
-.info{
-  margin-top:18px;
-  padding:13px;
-  border-radius:13px;
-  background:#fff8e5;
-  color:#665500;
-  font-size:12px;
-  line-height:2;
+.warning{
+margin-top:18px;
+padding:13px;
+border-radius:12px;
+background:#fff8e5;
+color:#665500;
+font-size:12px;
+line-height:2;
 }
 
 .reset{
-  width:100%;
-  padding:13px;
-  margin-top:10px;
-  border:1px solid #ddd;
-  border-radius:13px;
-  background:white;
-  font-size:15px;
+width:100%;
+padding:13px;
+margin-top:10px;
+border:1px solid #ddd;
+border-radius:12px;
+background:#fff;
+font-size:15px;
 }
 
 .footer{
-  text-align:center;
-  color:#999;
-  font-size:11px;
-  margin-top:18px;
+text-align:center;
+font-size:11px;
+color:#999;
+margin-top:18px;
 }
+
 </style>
+
 </head>
+
 
 <body>
 
@@ -175,248 +195,61 @@ input,select{
 <div class="brand">نیروانا</div>
 
 <div class="subtitle">
+
 محاسبه‌گر هوشمند کالری روزانه
+
 <br>
-نیاز تقریبی انرژی بدن خود را محاسبه کنید
+
+نیاز تقریبی انرژی بدن خود را محاسبه کنید.
+
 </div>
+
+
+<form id="calorieForm">
+
 
 <label>جنسیت</label>
 
 <div class="gender">
 
-<button type="button" id="male"
-onclick="selectGender('male')">
-👨 مرد
-</button>
+<label>
 
-<button type="button" id="female"
-onclick="selectGender('female')">
-👩 زن
-</button>
+<input
+type="radio"
+name="gender"
+value="male">
+
+<span>👨 مرد</span>
+
+</label>
+
+
+<label>
+
+<input
+type="radio"
+name="gender"
+value="female">
+
+<span>👩 زن</span>
+
+</label>
 
 </div>
 
-<label>سن</label>
+
+<label for="age">
+سن
+</label>
 
 <input
-type="number"
 id="age"
-placeholder="مثلاً 35"
+type="number"
 min="15"
-max="100">
+max="100"
+placeholder="مثلاً 35"
+required>
 
-<label>قد (سانتی‌متر)</label>
 
-<input
-type="number"
-id="height"
-placeholder="مثلاً 175"
-min="100"
-max="230">
-
-<label>وزن (کیلوگرم)</label>
-
-<input
-type="number"
-id="weight"
-placeholder="مثلاً 80"
-min="30"
-max="300">
-
-<label>سطح فعالیت</label>
-
-<select id="activity">
-
-<option value="">انتخاب کنید</option>
-
-<option value="1.2">
-🛋 کم‌تحرک — ورزش بسیار کم
-</option>
-
-<option value="1.375">
-🚶 فعالیت سبک — ۱ تا ۳ روز در هفته
-</option>
-
-<option value="1.55">
-🏃 فعالیت متوسط — ۳ تا ۵ روز در هفته
-</option>
-
-<option value="1.725">
-🏋️ فعالیت زیاد — ۶ تا ۷ روز در هفته
-</option>
-
-<option value="1.9">
-🔥 فعالیت بسیار زیاد — تمرین شدید یا کار فیزیکی
-</option>
-
-</select>
-
-<label>هدف شما</label>
-
-<select id="goal">
-
-<option value="">انتخاب کنید</option>
-
-<option value="lose">
-📉 کاهش وزن
-</option>
-
-<option value="maintain">
-⚖️ حفظ وزن
-</option>
-
-<option value="gain">
-📈 افزایش وزن
-</option>
-
-</select>
-
-<button
-class="calculate"
-onclick="calculateCalories()">
-
-🔥 محاسبه کالری من
-
-</button>
-
-
-<div class="result" id="result">
-
-<div class="result-title">
-🎯 نتیجه شما
-</div>
-
-<div class="box">
-🔥 کالری پایه بدن (BMR)
-<strong id="bmr"></strong>
-<span class="status">
-انرژی موردنیاز تقریبی بدن در حالت استراحت
-</span>
-</div>
-
-<div class="box">
-⚡ کالری حفظ وزن
-<strong id="tdee"></strong>
-<span class="status">
-میزان تقریبی کالری برای ثابت ماندن وزن
-</span>
-</div>
-
-<div class="box main-result">
-🎯 کالری پیشنهادی بر اساس هدف شما
-<strong id="goalCalories"></strong>
-<span class="status" id="goalText"></span>
-</div>
-
-<div class="box">
-⚖️ شاخص توده بدنی (BMI)
-<strong id="bmi"></strong>
-<span class="status" id="bmiStatus"></span>
-</div>
-
-<div class="box">
-🥩 پروتئین پیشنهادی روزانه
-<strong id="protein"></strong>
-</div>
-
-<div class="box">
-💧 آب پیشنهادی روزانه
-<strong id="water"></strong>
-</div>
-
-<div class="info">
-
-⚠️ توجه:
-این محاسبات تخمینی هستند و جایگزین تشخیص یا توصیه پزشکی و تخصصی تغذیه نیستند.
-
-نیاز واقعی انرژی هر فرد می‌تواند تحت تأثیر شرایط پزشکی، داروها، ترکیب بدن، میزان فعالیت و عوامل دیگر متفاوت باشد.
-
-</div>
-
-<button
-class="reset"
-onclick="resetCalculator()">
-
-🔄 محاسبه مجدد
-
-</button>
-
-</div>
-
-<div class="footer">
-🌿 نیروانا
-</div>
-
-</div>
-
-</div>
-
-
-<script>
-
-let gender="";
-
-
-function selectGender(value){
-
-gender=value;
-
-document.getElementById("male")
-.classList.remove("active");
-
-document.getElementById("female")
-.classList.remove("active");
-
-document.getElementById(value)
-.classList.add("active");
-
-}
-
-
-function calculateCalories(){
-
-const age=Number(
-document.getElementById("age").value
-);
-
-const height=Number(
-document.getElementById("height").value
-);
-
-const weight=Number(
-document.getElementById("weight").value
-);
-
-const activity=Number(
-document.getElementById("activity").value
-);
-
-const goal=
-document.getElementById("goal").value;
-
-
-if(!gender){
-
-alert("لطفاً جنسیت خود را انتخاب کنید.");
-
-return;
-
-}
-
-
-if(!age || !height || !weight){
-
-alert("لطفاً سن، قد و وزن را وارد کنید.");
-
-return;
-
-}
-
-
-if(!activity){
-
-alert("لطفاً سطح فعالیت را انتخاب کنید.");
-
-return;
-
-}
+<label for="height">
+قد (سانتی‌متر
