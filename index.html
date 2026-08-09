@@ -252,4 +252,491 @@ required>
 
 
 <label for="height">
-قد (سانتی‌متر
+قد (سانتی‌متر)
+</label>
+
+<input
+id="height"
+type="number"
+min="100"
+max="230"
+placeholder="مثلاً 175"
+required>
+
+
+<label for="weight">
+وزن (کیلوگرم)
+</label>
+
+<input
+id="weight"
+type="number"
+min="30"
+max="300"
+placeholder="مثلاً 80"
+required>
+
+
+<label for="activity">
+سطح فعالیت
+</label>
+
+<select
+id="activity"
+required>
+
+<option value="">
+انتخاب کنید
+</option>
+
+<option value="1.2">
+🛋 کم‌تحرک — ورزش بسیار کم
+</option>
+
+<option value="1.375">
+🚶 فعالیت سبک — ۱ تا ۳ روز در هفته
+</option>
+
+<option value="1.55">
+🏃 فعالیت متوسط — ۳ تا ۵ روز در هفته
+</option>
+
+<option value="1.725">
+🏋️ فعالیت زیاد — ۶ تا ۷ روز در هفته
+</option>
+
+<option value="1.9">
+🔥 فعالیت بسیار زیاد — تمرین شدید یا کار فیزیکی
+</option>
+
+</select>
+
+
+<label for="goal">
+هدف شما
+</label>
+
+<select
+id="goal"
+required>
+
+<option value="">
+انتخاب کنید
+</option>
+
+<option value="lose">
+📉 کاهش وزن
+</option>
+
+<option value="maintain">
+⚖️ حفظ وزن
+</option>
+
+<option value="gain">
+📈 افزایش وزن
+</option>
+
+</select>
+
+
+<button
+type="submit"
+class="calculate">
+
+🔥 محاسبه کالری من
+
+</button>
+
+</form>
+
+
+<div id="result">
+
+<div class="title">
+🎯 نتیجه شما
+</div>
+
+
+<div class="box">
+
+🔥 کالری پایه بدن (BMR)
+
+<strong id="bmr"></strong>
+
+<div class="small">
+انرژی موردنیاز تقریبی بدن در حالت استراحت
+</div>
+
+</div>
+
+
+<div class="box">
+
+⚡ کالری حفظ وزن
+
+<strong id="tdee"></strong>
+
+<div class="small">
+کالری تقریبی موردنیاز برای ثابت ماندن وزن
+</div>
+
+</div>
+
+
+<div class="box main">
+
+🎯 کالری پیشنهادی برای هدف شما
+
+<strong id="goalCalories"></strong>
+
+<div
+class="small"
+id="goalDescription">
+</div>
+
+</div>
+
+
+<div class="box">
+
+⚖️ شاخص توده بدنی (BMI)
+
+<strong id="bmi"></strong>
+
+<div
+class="small"
+id="bmiStatus">
+</div>
+
+</div>
+
+
+<div class="box">
+
+🥩 پروتئین پیشنهادی روزانه
+
+<strong id="protein"></strong>
+
+</div>
+
+
+<div class="box">
+
+💧 آب پیشنهادی روزانه
+
+<strong id="water"></strong>
+
+</div>
+
+
+<div class="warning">
+
+⚠️ توجه:
+
+این محاسبات تقریبی هستند و جایگزین تشخیص پزشک یا برنامه اختصاصی متخصص تغذیه نیستند.
+
+نیاز واقعی انرژی هر فرد می‌تواند تحت تأثیر شرایط پزشکی، داروها، ترکیب بدن و میزان فعالیت متفاوت باشد.
+
+</div>
+
+
+<button
+type="button"
+class="reset"
+id="resetButton">
+
+🔄 محاسبه مجدد
+
+</button>
+
+</div>
+
+
+<div class="footer">
+
+🌿 نیروانا
+
+</div>
+
+</div>
+
+</div>
+
+
+<script>
+
+document
+.getElementById("calorieForm")
+.addEventListener("submit", function(event){
+
+event.preventDefault();
+
+
+var genderElement =
+document.querySelector(
+'input[name="gender"]:checked'
+);
+
+
+if(!genderElement){
+
+alert("لطفاً جنسیت خود را انتخاب کنید.");
+
+return;
+
+}
+
+
+var gender =
+genderElement.value;
+
+
+var age =
+Number(
+document.getElementById("age").value
+);
+
+
+var height =
+Number(
+document.getElementById("height").value
+);
+
+
+var weight =
+Number(
+document.getElementById("weight").value
+);
+
+
+var activity =
+Number(
+document.getElementById("activity").value
+);
+
+
+var goal =
+document.getElementById("goal").value;
+
+
+if(
+age <= 0 ||
+height <= 0 ||
+weight <= 0 ||
+!activity ||
+!goal
+){
+
+alert(
+"لطفاً تمام اطلاعات را کامل وارد کنید."
+);
+
+return;
+
+}
+
+
+var bmr;
+
+
+if(gender === "male"){
+
+bmr =
+10 * weight +
+6.25 * height -
+5 * age +
+5;
+
+}else{
+
+bmr =
+10 * weight +
+6.25 * height -
+5 * age -
+161;
+
+}
+
+
+var tdee =
+bmr * activity;
+
+
+var goalCalories;
+
+
+var goalDescription;
+
+
+if(goal === "lose"){
+
+goalCalories =
+tdee * 0.85;
+
+goalDescription =
+"حدود ۱۵٪ کمتر از کالری نگهدارنده برای کاهش وزن.";
+
+}
+
+
+if(goal === "maintain"){
+
+goalCalories =
+tdee;
+
+goalDescription =
+"تقریباً برابر با کالری موردنیاز برای حفظ وزن.";
+
+}
+
+
+if(goal === "gain"){
+
+goalCalories =
+tdee * 1.12;
+
+goalDescription =
+"حدود ۱۲٪ بیشتر از کالری نگهدارنده برای افزایش وزن.";
+
+}
+
+
+var heightMeter =
+height / 100;
+
+
+var bmi =
+weight /
+(heightMeter * heightMeter);
+
+
+var bmiStatus;
+
+
+if(bmi < 18.5){
+
+bmiStatus =
+"کمبود وزن";
+
+}
+
+else if(bmi < 25){
+
+bmiStatus =
+"محدوده معمول";
+
+}
+
+else if(bmi < 30){
+
+bmiStatus =
+"اضافه‌وزن";
+
+}
+
+else{
+
+bmiStatus =
+"چاقی";
+
+}
+
+
+var protein;
+
+
+if(goal === "gain"){
+
+protein =
+weight * 1.6;
+
+}else{
+
+protein =
+weight * 1.4;
+
+}
+
+
+var water =
+weight * 35;
+
+
+document.getElementById("bmr")
+.textContent =
+Math.round(bmr) +
+" کالری";
+
+
+document.getElementById("tdee")
+.textContent =
+Math.round(tdee) +
+" کالری";
+
+
+document.getElementById("goalCalories")
+.textContent =
+Math.round(goalCalories) +
+" کالری";
+
+
+document.getElementById("goalDescription")
+.textContent =
+goalDescription;
+
+
+document.getElementById("bmi")
+.textContent =
+bmi.toFixed(1);
+
+
+document.getElementById("bmiStatus")
+.textContent =
+bmiStatus;
+
+
+document.getElementById("protein")
+.textContent =
+Math.round(protein) +
+" گرم";
+
+
+document.getElementById("water")
+.textContent =
+(water / 1000).toFixed(1) +
+" لیتر";
+
+
+document.getElementById("result")
+.style.display =
+"block";
+
+
+document.getElementById("result")
+.scrollIntoView({
+behavior:"smooth"
+});
+
+});
+
+
+document
+.getElementById("resetButton")
+.addEventListener("click", function(){
+
+document
+.getElementById("calorieForm")
+.reset();
+
+
+document.getElementById("result")
+.style.display =
+"none";
+
+});
+
+</script>
+
+</body>
+
+</html>
