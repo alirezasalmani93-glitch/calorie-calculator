@@ -649,19 +649,29 @@ bmiStatus =
 
 }
 
+var proteinLow;
+  
+var proteinHigh;
 
-var protein;
 
+if(goal === "lose"){
 
-if(goal === "gain"){
+proteinLow = weight * 1.4;
+proteinHigh = weight * 1.8;
 
-protein =
-weight * 1.6;
+}
 
-}else{
+else if(goal === "gain"){
 
-protein =
-weight * 1.4;
+proteinLow = weight * 1.6;
+proteinHigh = weight * 2.0;
+
+}
+
+else{
+
+proteinLow = weight * 1.2;
+proteinHigh = weight * 1.6;
 
 }
 
@@ -705,7 +715,9 @@ bmiStatus;
 
 document.getElementById("protein")
 .textContent =
-Math.round(protein) +
+Math.round(proteinLow) +
+" تا " +
+Math.round(proteinHigh) +
 " گرم";
 
 
