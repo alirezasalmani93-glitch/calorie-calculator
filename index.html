@@ -1,274 +1,598 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
 <title>نیروانا | محاسبه‌گر کالری</title>
 
+
 <style>
+
+/* =========================
+   تنظیمات عمومی
+========================= */
+
 * {
   box-sizing: border-box;
   font-family: Tahoma, Arial, sans-serif;
 }
 
 body {
+
   margin: 0;
+
   background: #f3f6f4;
+
   color: #222;
+
 }
 
 .container {
+
   max-width: 520px;
+
   margin: auto;
+
   padding: 18px;
+
 }
 
 .card {
+
   background: #fff;
+
   border-radius: 22px;
+
   padding: 22px;
-  box-shadow: 0 5px 25px rgba(0,0,0,.08);
+
+  box-shadow:
+  0 5px 25px rgba(0,0,0,.08);
+
 }
 
+
+/* =========================
+   هدر
+========================= */
+
 .logo {
+
   text-align: center;
+
   font-size: 36px;
+
 }
 
 .brand {
+
   text-align: center;
+
   font-size: 27px;
+
   font-weight: bold;
+
   margin-top: 5px;
+
 }
 
 .subtitle {
+
   text-align: center;
+
   color: #777;
+
   font-size: 13px;
+
   line-height: 1.8;
-  margin: 8px 0 25px;
+
+  margin:
+  8px 0 25px;
+
 }
 
+
+/* =========================
+   فرم
+========================= */
+
 label.title-label {
+
   display: block;
+
   font-weight: bold;
+
   margin-top: 17px;
+
   margin-bottom: 7px;
+
 }
 
 input[type="number"],
 select {
+
   width: 100%;
+
   padding: 14px;
-  border: 1px solid #ddd;
+
+  border:
+  1px solid #ddd;
+
   border-radius: 12px;
+
   font-size: 16px;
+
   background: #fff;
+
 }
 
+
+/* =========================
+   جنسیت
+========================= */
+
 .gender {
+
   display: flex;
+
   gap: 10px;
+
 }
 
 .gender label {
+
   flex: 1;
+
   margin: 0;
+
 }
 
 .gender input {
+
   display: none;
+
 }
 
 .gender span {
+
   display: block;
+
   text-align: center;
+
   padding: 14px;
-  border: 2px solid #ddd;
+
+  border:
+  2px solid #ddd;
+
   border-radius: 12px;
+
   cursor: pointer;
+
   font-size: 16px;
+
 }
 
 .gender input:checked + span {
+
   border-color: #278a5b;
+
   background: #edf8f1;
+
 }
+
+
+/* =========================
+   دکمه محاسبه
+========================= */
 
 .calculate {
+
   width: 100%;
+
   margin-top: 25px;
+
   padding: 16px;
+
   border: 0;
+
   border-radius: 14px;
+
   background: #278a5b;
+
   color: white;
+
   font-size: 18px;
+
   font-weight: bold;
+
   cursor: pointer;
+
 }
 
+
+/* =========================
+   نتیجه
+========================= */
+
 .result {
+
   display: none;
+
   margin-top: 25px;
+
 }
 
 .result-title {
+
   text-align: center;
+
   font-size: 22px;
+
   font-weight: bold;
+
   margin-bottom: 16px;
+
 }
 
 .box {
+
   background: #f6f8f7;
+
   border-radius: 14px;
+
   padding: 15px;
+
   margin-bottom: 10px;
+
 }
 
 .box strong {
+
   display: block;
+
   font-size: 21px;
+
   margin-top: 6px;
+
 }
 
 .main-result {
+
   background: #edf8f1;
-  border: 1px solid #d5eddf;
+
+  border:
+  1px solid #d5eddf;
+
 }
 
 .small {
+
   display: block;
+
   font-size: 13px;
+
   color: #777;
+
   margin-top: 6px;
+
   line-height: 1.8;
+
 }
+
+
+/* =========================
+   هشدار
+========================= */
 
 .warning {
+
   margin-top: 18px;
+
   padding: 13px;
+
   border-radius: 12px;
+
   background: #fff8e5;
+
   color: #665500;
+
   font-size: 12px;
+
   line-height: 2;
+
 }
+
+
+/* =========================
+   دکمه‌ها
+========================= */
 
 .reset {
+
   width: 100%;
+
   padding: 13px;
+
   margin-top: 10px;
-  border: 1px solid #ddd;
+
+  border:
+  1px solid #ddd;
+
   border-radius: 12px;
+
   background: #fff;
+
   font-size: 15px;
+
   cursor: pointer;
+
 }
 
-.footer {
-  text-align: center;
-  font-size: 11px;
-  color: #999;
+
+/* =========================
+   نمودار
+========================= */
+
+.macro-row {
+
   margin-top: 18px;
+
 }
+
+.macro-header {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+}
+
+.progress {
+
+  height: 10px;
+
+  background: #eee;
+
+  border-radius: 10px;
+
+  margin-top: 7px;
+
+  overflow: hidden;
+
+}
+
+.progress-bar {
+
+  height: 10px;
+
+  border-radius: 10px;
+
+}
+
+
+/* =========================
+   کارت نتیجه قابل اشتراک
+========================= */
 
 .share-card {
+
   margin-top: 20px;
+
   padding: 22px;
+
   border-radius: 22px;
-  background: linear-gradient(145deg, #f8fff9, #edf8f1);
-  border: 1px solid #d7ecdf;
-  box-shadow: 0 6px 20px rgba(0,0,0,.07);
+
+  background:
+  linear-gradient(
+  145deg,
+  #f8fff9,
+  #edf8f1
+  );
+
+  border:
+  1px solid #d7ecdf;
+
+  box-shadow:
+  0 6px 20px rgba(0,0,0,.07);
+
   text-align: center;
+
 }
 
 .share-logo {
+
   font-size: 38px;
+
 }
 
 .share-brand {
+
   font-size: 27px;
+
   font-weight: bold;
+
   margin-top: 3px;
+
 }
 
 .share-subtitle {
+
   font-size: 12px;
+
   color: #777;
+
   margin-top: 5px;
+
   margin-bottom: 18px;
+
 }
 
 .share-main {
+
   display: grid;
-  grid-template-columns: 1fr 1fr;
+
+  grid-template-columns:
+  1fr 1fr;
+
   gap: 10px;
+
 }
 
 .share-item {
-  background: rgba(255,255,255,.75);
+
+  background:
+  rgba(255,255,255,.75);
+
   border-radius: 13px;
+
   padding: 12px 8px;
+
 }
 
 .share-item span {
+
   display: block;
+
   font-size: 12px;
+
   color: #666;
+
 }
 
 .share-item strong {
+
   display: block;
+
   margin-top: 6px;
+
   font-size: 16px;
+
 }
 
 .share-footer {
+
   margin-top: 18px;
+
   font-size: 11px;
+
   color: #888;
+
 }
-  
+
+
+/* =========================
+   فوتر
+========================= */
+
+.footer {
+
+  text-align: center;
+
+  font-size: 11px;
+
+  color: #999;
+
+  margin-top: 18px;
+
+}
+
 </style>
+
 </head>
+
 
 <body>
 
+
 <div class="container">
+
 <div class="card">
 
-<div class="logo">🌿</div>
 
-<div class="brand">نیروانا</div>
+<!-- =========================
+     هدر
+========================= -->
+
+<div class="logo">
+🌿
+</div>
+
+<div class="brand">
+نیروانا
+</div>
 
 <div class="subtitle">
+
 محاسبه‌گر هوشمند کالری روزانه
+
 <br>
+
 نیاز تقریبی انرژی بدن خود را محاسبه کنید.
+
 </div>
+
+
+<!-- =========================
+     فرم
+========================= -->
 
 <form id="calorieForm">
 
-<label class="title-label">جنسیت</label>
+
+<label class="title-label">
+
+جنسیت
+
+</label>
+
 
 <div class="gender">
 
-<label>
-<input type="radio" name="gender" value="male">
-<span>👨 مرد</span>
-</label>
 
 <label>
-<input type="radio" name="gender" value="female">
-<span>👩 زن</span>
+
+<input
+type="radio"
+name="gender"
+value="male">
+
+<span>
+👨 مرد
+</span>
+
 </label>
+
+
+<label>
+
+<input
+type="radio"
+name="gender"
+value="female">
+
+<span>
+👩 زن
+</span>
+
+</label>
+
 
 </div>
 
-<label class="title-label" for="age">سن</label>
+
+<label
+class="title-label"
+for="age">
+
+سن
+
+</label>
 
 <input
 id="age"
@@ -278,7 +602,14 @@ max="100"
 placeholder="مثلاً 35"
 required>
 
-<label class="title-label" for="height">قد (سانتی‌متر)</label>
+
+<label
+class="title-label"
+for="height">
+
+قد (سانتی‌متر)
+
+</label>
 
 <input
 id="height"
@@ -288,7 +619,14 @@ max="230"
 placeholder="مثلاً 175"
 required>
 
-<label class="title-label" for="weight">وزن (کیلوگرم)</label>
+
+<label
+class="title-label"
+for="weight">
+
+وزن (کیلوگرم)
+
+</label>
 
 <input
 id="weight"
@@ -298,13 +636,22 @@ max="300"
 placeholder="مثلاً 80"
 required>
 
-<label class="title-label" for="activity">
+
+<label
+class="title-label"
+for="activity">
+
 سطح فعالیت
+
 </label>
 
-<select id="activity" required>
+<select
+id="activity"
+required>
 
-<option value="">انتخاب کنید</option>
+<option value="">
+انتخاب کنید
+</option>
 
 <option value="1.2">
 🛋 کم‌تحرک — ورزش بسیار کم
@@ -328,13 +675,22 @@ required>
 
 </select>
 
-<label class="title-label" for="goal">
+
+<label
+class="title-label"
+for="goal">
+
 هدف شما
+
 </label>
 
-<select id="goal" required>
+<select
+id="goal"
+required>
 
-<option value="">انتخاب کنید</option>
+<option value="">
+انتخاب کنید
+</option>
 
 <option value="lose">
 📉 کاهش وزن
@@ -350,6 +706,7 @@ required>
 
 </select>
 
+
 <button
 type="submit"
 class="calculate">
@@ -358,14 +715,27 @@ class="calculate">
 
 </button>
 
+
 </form>
 
 
-<div id="result" class="result">
+<!-- =========================
+     نتایج
+========================= -->
+
+<div
+id="result"
+class="result">
+
 
 <div class="result-title">
+
 🎯 نتیجه شما
+
 </div>
+
+
+<!-- BMR -->
 
 <div class="box">
 
@@ -374,10 +744,15 @@ class="calculate">
 <strong id="bmr"></strong>
 
 <span class="small">
+
 انرژی موردنیاز تقریبی بدن در حالت استراحت
+
 </span>
 
 </div>
+
+
+<!-- TDEE -->
 
 <div class="box">
 
@@ -386,10 +761,15 @@ class="calculate">
 <strong id="tdee"></strong>
 
 <span class="small">
+
 نیاز تقریبی روزانه برای ثابت ماندن وزن
+
 </span>
 
 </div>
+
+
+<!-- هدف -->
 
 <div class="box main-result">
 
@@ -404,6 +784,9 @@ id="goalDescription">
 
 </div>
 
+
+<!-- BMI -->
+
 <div class="box">
 
 ⚖️ شاخص توده بدنی (BMI)
@@ -417,6 +800,9 @@ id="bmiStatus">
 
 </div>
 
+
+<!-- پروتئین -->
+
 <div class="box">
 
 🥩 پروتئین پیشنهادی روزانه
@@ -426,96 +812,8 @@ id="bmiStatus">
 </div>
 
 
-🥗 درشت‌مغذی‌های پیشنهادی روزانه
+<!-- آب -->
 
-<div style="margin-top:12px;">
-🥩 پروتئین
-<strong id="macroProtein"></strong>
-</div>
-
-<div style="margin-top:12px;">
-🍚 کربوهیدرات
-<strong id="carbs"></strong>
-</div>
-
-<div style="margin-top:12px;">
-🥑 چربی
-<strong id="fat"></strong>
-</div>
-
-<div style="margin-top:12px;">
-🌾 فیبر
-<strong id="fiber"></strong>
-</div>
-
-<span class="small">
-مقادیر تقریبی هستند و بر اساس کالری هدف و وزن بدن محاسبه شده‌اند.
-</span>
-
-</div>
-
-<div class="box">
-
-<div style="font-size:18px;font-weight:bold;">
-📊 ترکیب کالری روزانه
-</div>
-
-<div style="margin-top:18px;">
-
-<div style="display:flex;justify-content:space-between;">
-<span>🥩 پروتئین</span>
-<strong id="proteinPercent">25%</strong>
-</div>
-
-<div style="height:10px;background:#eee;border-radius:10px;margin-top:7px;">
-<div
-id="proteinBar"
-style="height:10px;width:25%;background:#278a5b;border-radius:10px;">
-</div>
-</div>
-
-</div>
-
-
-<div style="margin-top:18px;">
-
-<div style="display:flex;justify-content:space-between;">
-<span>🍚 کربوهیدرات</span>
-<strong id="carbPercent">45%</strong>
-</div>
-
-<div style="height:10px;background:#eee;border-radius:10px;margin-top:7px;">
-<div
-id="carbBar"
-style="height:10px;width:45%;background:#d6a52c;border-radius:10px;">
-</div>
-</div>
-
-</div>
-
-
-<div style="margin-top:18px;">
-
-<div style="display:flex;justify-content:space-between;">
-<span>🥑 چربی</span>
-<strong id="fatPercent">30%</strong>
-</div>
-
-<div style="height:10px;background:#eee;border-radius:10px;margin-top:7px;">
-<div
-id="fatBar"
-style="height:10px;width:30%;background:#7b6bb3;border-radius:10px;">
-</div>
-</div>
-
-</div>
-
-<span class="small" style="margin-top:15px;">
-این نمودار سهم تقریبی انرژی دریافتی از پروتئین، کربوهیدرات و چربی را نشان می‌دهد.
-</span>
-
-</div>
-  
 <div class="box">
 
 💧 آب پیشنهادی روزانه
@@ -523,6 +821,333 @@ style="height:10px;width:30%;background:#7b6bb3;border-radius:10px;">
 <strong id="water"></strong>
 
 </div>
+
+
+<!-- =========================
+     درشت مغذی‌ها
+========================= -->
+
+<div class="box main-result">
+
+🥗 درشت‌مغذی‌های پیشنهادی روزانه
+
+
+<div class="macro-row">
+
+<div class="macro-header">
+
+<span>
+🥩 پروتئین
+</span>
+
+<strong id="macroProtein">
+</strong>
+
+</div>
+
+</div>
+
+
+<div class="macro-row">
+
+<div class="macro-header">
+
+<span>
+🍚 کربوهیدرات
+</span>
+
+<strong id="carbs">
+</strong>
+
+</div>
+
+</div>
+
+
+<div class="macro-row">
+
+<div class="macro-header">
+
+<span>
+🥑 چربی
+</span>
+
+<strong id="fat">
+</strong>
+
+</div>
+
+</div>
+
+
+<div class="macro-row">
+
+<div class="macro-header">
+
+<span>
+🌾 فیبر
+</span>
+
+<strong id="fiber">
+</strong>
+
+</div>
+
+</div>
+
+
+<span class="small">
+
+مقادیر تقریبی هستند و بر اساس کالری هدف و وزن بدن محاسبه شده‌اند.
+
+</span>
+
+</div>
+
+
+<!-- =========================
+     نمودار
+========================= -->
+
+<div class="box">
+
+<div
+style="
+font-size:18px;
+font-weight:bold;
+">
+
+📊 ترکیب کالری روزانه
+
+</div>
+
+
+<div class="macro-row">
+
+<div class="macro-header">
+
+<span>
+🥩 پروتئین
+</span>
+
+<strong id="proteinPercent">
+</strong>
+
+</div>
+
+<div class="progress">
+
+<div
+id="proteinBar"
+class="progress-bar"
+style="
+width:0%;
+background:#278a5b;
+">
+</div>
+
+</div>
+
+</div>
+
+
+<div class="macro-row">
+
+<div class="macro-header">
+
+<span>
+🍚 کربوهیدرات
+</span>
+
+<strong id="carbPercent">
+</strong>
+
+</div>
+
+<div class="progress">
+
+<div
+id="carbBar"
+class="progress-bar"
+style="
+width:0%;
+background:#d6a52c;
+">
+</div>
+
+</div>
+
+</div>
+
+
+<div class="macro-row">
+
+<div class="macro-header">
+
+<span>
+🥑 چربی
+</span>
+
+<strong id="fatPercent">
+</strong>
+
+</div>
+
+<div class="progress">
+
+<div
+id="fatBar"
+class="progress-bar"
+style="
+width:0%;
+background:#7b6bb3;
+">
+</div>
+
+</div>
+
+</div>
+
+
+<span
+class="small">
+
+این نمودار سهم تقریبی انرژی دریافتی از پروتئین، کربوهیدرات و چربی را نشان می‌دهد.
+
+</span>
+
+</div>
+
+
+<!-- =========================
+     کارت نتیجه قابل اشتراک
+========================= -->
+
+<div
+id="shareCard"
+class="share-card">
+
+
+<div class="share-logo">
+🌿
+</div>
+
+
+<div class="share-brand">
+نیروانا
+</div>
+
+
+<div class="share-subtitle">
+
+نتیجه محاسبه کالری روزانه
+
+</div>
+
+
+<div class="share-main">
+
+
+<div class="share-item">
+
+<span>
+🔥 کالری هدف
+</span>
+
+<strong id="shareCalories">
+</strong>
+
+</div>
+
+
+<div class="share-item">
+
+<span>
+⚖️ BMI
+</span>
+
+<strong id="shareBMI">
+</strong>
+
+</div>
+
+
+<div class="share-item">
+
+<span>
+🥩 پروتئین
+</span>
+
+<strong id="shareProtein">
+</strong>
+
+</div>
+
+
+<div class="share-item">
+
+<span>
+🍚 کربوهیدرات
+</span>
+
+<strong id="shareCarbs">
+</strong>
+
+</div>
+
+
+<div class="share-item">
+
+<span>
+🥑 چربی
+</span>
+
+<strong id="shareFat">
+</strong>
+
+</div>
+
+
+<div class="share-item">
+
+<span>
+🌾 فیبر
+</span>
+
+<strong id="shareFiber">
+</strong>
+
+</div>
+
+
+<div class="share-item">
+
+<span>
+💧 آب
+</span>
+
+<strong id="shareWater">
+</strong>
+
+</div>
+
+
+</div>
+
+
+<div class="share-footer">
+
+🌿 نیروانا | محاسبه‌گر کالری
+
+</div>
+
+
+</div>
+
+
+<!-- =========================
+     هشدار
+========================= -->
 
 <div class="warning">
 
@@ -534,65 +1159,11 @@ style="height:10px;width:30%;background:#7b6bb3;border-radius:10px;">
 
 </div>
 
-<div id="shareCard" class="share-card">
 
-<div class="share-logo">
-🌿
-</div>
+<!-- =========================
+     دکمه محاسبه مجدد
+========================= -->
 
-<div class="share-brand">
-نیروانا
-</div>
-
-<div class="share-subtitle">
-نتیجه محاسبه کالری روزانه
-</div>
-
-<div class="share-main">
-
-<div class="share-item">
-<span>🔥 کالری هدف</span>
-<strong id="shareCalories"></strong>
-</div>
-
-<div class="share-item">
-<span>⚖️ BMI</span>
-<strong id="shareBMI"></strong>
-</div>
-
-<div class="share-item">
-<span>🥩 پروتئین</span>
-<strong id="shareProtein"></strong>
-</div>
-
-<div class="share-item">
-<span>🍚 کربوهیدرات</span>
-<strong id="shareCarbs"></strong>
-</div>
-
-<div class="share-item">
-<span>🥑 چربی</span>
-<strong id="shareFat"></strong>
-</div>
-
-<div class="share-item">
-<span>🌾 فیبر</span>
-<strong id="shareFiber"></strong>
-</div>
-
-<div class="share-item">
-<span>💧 آب</span>
-<strong id="shareWater"></strong>
-</div>
-
-</div>
-
-<div class="share-footer">
-🌿 نیروانا | محاسبه‌گر کالری
-</div>
-
-</div>
-  
 <button
 type="button"
 id="resetButton"
@@ -602,6 +1173,11 @@ class="reset">
 
 </button>
 
+
+<!-- =========================
+     اشتراک
+========================= -->
+
 <button
 type="button"
 id="shareButton"
@@ -610,50 +1186,98 @@ class="reset">
 📤 اشتراک نتیجه در تلگرام
 
 </button>
-  
+
+
 </div>
 
 
 <div class="footer">
+
 🌿 نیروانا
-</div>
 
 </div>
+
+
+</div>
+
 </div>
 
 
 <script>
 
-document.getElementById("calorieForm").addEventListener(
+
+/* =====================================================
+   فرم اصلی
+===================================================== */
+
+document
+.getElementById("calorieForm")
+.addEventListener(
 "submit",
 function(event) {
 
+
 event.preventDefault();
+
+
+/* جنسیت */
 
 var genderElement =
 document.querySelector(
 'input[name="gender"]:checked'
 );
 
+
 if (!genderElement) {
-alert("لطفاً جنسیت خود را انتخاب کنید.");
+
+alert(
+"لطفاً جنسیت خود را انتخاب کنید."
+);
+
 return;
+
 }
 
+
+/* اطلاعات */
+
 var age =
-Number(document.getElementById("age").value);
+Number(
+document
+.getElementById("age")
+.value
+);
+
 
 var height =
-Number(document.getElementById("height").value);
+Number(
+document
+.getElementById("height")
+.value
+);
+
 
 var weight =
-Number(document.getElementById("weight").value);
+Number(
+document
+.getElementById("weight")
+.value
+);
+
 
 var activity =
-Number(document.getElementById("activity").value);
+Number(
+document
+.getElementById("activity")
+.value
+);
+
 
 var goal =
-document.getElementById("goal").value;
+document
+.getElementById("goal")
+.value;
+
 
 if (
 age <= 0 ||
@@ -662,16 +1286,26 @@ weight <= 0 ||
 activity <= 0 ||
 goal === ""
 ) {
-alert("لطفاً تمام اطلاعات را کامل وارد کنید.");
+
+alert(
+"لطفاً تمام اطلاعات را کامل وارد کنید."
+);
+
 return;
+
 }
 
 
-/* BMR */
+/* =====================================================
+   BMR
+===================================================== */
 
 var bmr;
 
-if (genderElement.value === "male") {
+
+if (
+genderElement.value === "male"
+) {
 
 bmr =
 (10 * weight) +
@@ -679,7 +1313,9 @@ bmr =
 (5 * age) +
 5;
 
-} else {
+}
+
+else {
 
 bmr =
 (10 * weight) +
@@ -690,42 +1326,60 @@ bmr =
 }
 
 
-/* TDEE */
+/* =====================================================
+   TDEE
+===================================================== */
 
 var tdee =
 bmr * activity;
 
 
-/* هدف */
+/* =====================================================
+   کالری هدف
+===================================================== */
 
 var goalLow;
+
 var goalHigh;
+
 var goalDescription;
+
 
 if (goal === "lose") {
 
-goalLow = tdee * 0.80;
-goalHigh = tdee * 0.90;
+goalLow =
+tdee * 0.80;
+
+goalHigh =
+tdee * 0.90;
 
 goalDescription =
 "محدوده تقریبی برای کاهش وزن؛ حدود ۱۰ تا ۲۰ درصد کمتر از کالری حفظ وزن.";
 
 }
 
+
 else if (goal === "maintain") {
 
-goalLow = tdee * 0.95;
-goalHigh = tdee * 1.05;
+goalLow =
+tdee * 0.95;
+
+goalHigh =
+tdee * 1.05;
 
 goalDescription =
 "محدوده تقریبی برای حفظ وزن فعلی.";
 
 }
 
+
 else {
 
-goalLow = tdee * 1.10;
-goalHigh = tdee * 1.15;
+goalLow =
+tdee * 1.10;
+
+goalHigh =
+tdee * 1.15;
 
 goalDescription =
 "محدوده تقریبی برای افزایش وزن؛ حدود ۱۰ تا ۱۵ درصد بیشتر از کالری حفظ وزن.";
@@ -733,74 +1387,106 @@ goalDescription =
 }
 
 
-/* BMI */
+/* =====================================================
+   BMI
+===================================================== */
 
 var heightMeter =
 height / 100;
 
+
 var bmi =
-weight / (heightMeter * heightMeter);
+weight /
+(heightMeter * heightMeter);
+
 
 var bmiStatus;
 
+
 if (bmi < 18.5) {
 
-bmiStatus = "کمبود وزن";
+bmiStatus =
+"کمبود وزن";
 
 }
 
 else if (bmi < 25) {
 
-bmiStatus = "محدوده معمول";
+bmiStatus =
+"محدوده معمول";
 
 }
 
 else if (bmi < 30) {
 
-bmiStatus = "اضافه‌وزن";
+bmiStatus =
+"اضافه‌وزن";
 
 }
 
 else {
 
-bmiStatus = "چاقی";
+bmiStatus =
+"چاقی";
 
 }
 
 
-/* پروتئین */
+/* =====================================================
+   پروتئین
+===================================================== */
 
 var proteinLow;
+
 var proteinHigh;
+
 
 if (goal === "lose") {
 
-proteinLow = weight * 1.4;
-proteinHigh = weight * 1.8;
+proteinLow =
+weight * 1.4;
+
+proteinHigh =
+weight * 1.8;
 
 }
 
 else if (goal === "gain") {
 
-proteinLow = weight * 1.6;
-proteinHigh = weight * 2.0;
+proteinLow =
+weight * 1.6;
+
+proteinHigh =
+weight * 2.0;
 
 }
 
 else {
 
-proteinLow = weight * 1.2;
-proteinHigh = weight * 1.6;
+proteinLow =
+weight * 1.2;
+
+proteinHigh =
+weight * 1.6;
 
 }
 
 
-/* آب */
+var protein =
+(proteinLow + proteinHigh) / 2;
+
+
+/* =====================================================
+   آب
+===================================================== */
 
 var water =
 weight * 35;
 
- /* درشت‌مغذی‌ها */
+
+/* =====================================================
+   درشت مغذی‌ها
+===================================================== */
 
 var targetCalories =
 (goalLow + goalHigh) / 2;
@@ -808,41 +1494,15 @@ var targetCalories =
 
 /* پروتئین */
 
-var macroProteinLow;
-var macroProteinHigh;
-
-if (goal === "lose") {
-
-macroProteinLow = weight * 1.4;
-macroProteinHigh = weight * 1.8;
-
-}
-
-else if (goal === "gain") {
-
-macroProteinLow = weight * 1.6;
-macroProteinHigh = weight * 2.0;
-
-}
-
-else {
-
-macroProteinLow = weight * 1.2;
-macroProteinHigh = weight * 1.6;
-
-}
-
-
-/* مقدار متوسط پروتئین */
-
 var macroProtein =
-(macroProteinLow + macroProteinHigh) / 2;
+(proteinLow + proteinHigh) / 2;
 
 
 /* چربی */
 
 var fatCalories =
 targetCalories * 0.30;
+
 
 var fat =
 fatCalories / 9;
@@ -861,6 +1521,7 @@ targetCalories -
 proteinCalories -
 fatCalories;
 
+
 var carbs =
 carbCalories / 4;
 
@@ -868,220 +1529,414 @@ carbCalories / 4;
 /* فیبر */
 
 var fiber =
-(targetCalories / 1000) * 14; 
+(targetCalories / 1000) * 14;
 
- /* درصد انرژی درشت‌مغذی‌ها */
+
+/* =====================================================
+   درصد درشت مغذی‌ها
+===================================================== */
 
 var proteinPercent =
-(proteinCalories / targetCalories) * 100;
+(proteinCalories /
+targetCalories) * 100;
+
 
 var fatPercent =
-(fatCalories / targetCalories) * 100;
+(fatCalories /
+targetCalories) * 100;
+
 
 var carbPercent =
-(carbCalories / targetCalories) * 100; 
+(carbCalories /
+targetCalories) * 100;
 
-/* نمایش نتایج */
 
-document.getElementById("bmr").textContent =
-Math.round(bmr) + " کالری";
+/* =====================================================
+   نمایش نتایج اصلی
+===================================================== */
 
-document.getElementById("tdee").textContent =
-Math.round(tdee) + " کالری";
+document
+.getElementById("bmr")
+.textContent =
+Math.round(bmr) +
+" کالری";
 
-document.getElementById("goalCalories").textContent =
+
+document
+.getElementById("tdee")
+.textContent =
+Math.round(tdee) +
+" کالری";
+
+
+document
+.getElementById("goalCalories")
+.textContent =
 Math.round(goalLow) +
 " تا " +
 Math.round(goalHigh) +
 " کالری";
 
-document.getElementById("goalDescription").textContent =
+
+document
+.getElementById("goalDescription")
+.textContent =
 goalDescription;
 
-document.getElementById("bmi").textContent =
+
+document
+.getElementById("bmi")
+.textContent =
 bmi.toFixed(1);
 
-document.getElementById("bmiStatus").textContent =
+
+document
+.getElementById("bmiStatus")
+.textContent =
 bmiStatus;
 
-document.getElementById("protein").textContent =
+
+document
+.getElementById("protein")
+.textContent =
 Math.round(proteinLow) +
 " تا " +
 Math.round(proteinHigh) +
 " گرم";
 
-document.getElementById("water").textContent =
+
+document
+.getElementById("water")
+.textContent =
 (water / 1000).toFixed(1) +
 " لیتر";
 
-document.getElementById("macroProtein").textContent =
-Math.round(macroProteinLow) +
+
+/* =====================================================
+   نمایش درشت مغذی‌ها
+===================================================== */
+
+document
+.getElementById("macroProtein")
+.textContent =
+Math.round(proteinLow) +
 " تا " +
-Math.round(macroProteinHigh) +
+Math.round(proteinHigh) +
 " گرم";
 
 
-document.getElementById("carbs").textContent =
+document
+.getElementById("carbs")
+.textContent =
 Math.round(carbs) +
 " گرم";
 
 
-document.getElementById("fat").textContent =
+document
+.getElementById("fat")
+.textContent =
 Math.round(fat) +
 " گرم";
 
 
-document.getElementById("fiber").textContent =
+document
+.getElementById("fiber")
+.textContent =
 Math.round(fiber) +
 " گرم";
 
-document.getElementById("shareCalories").textContent =
+
+/* =====================================================
+   نمودار
+===================================================== */
+
+document
+.getElementById("proteinPercent")
+.textContent =
+Math.round(proteinPercent) +
+"%";
+
+
+document
+.getElementById("carbPercent")
+.textContent =
+Math.round(carbPercent) +
+"%";
+
+
+document
+.getElementById("fatPercent")
+.textContent =
+Math.round(fatPercent) +
+"%";
+
+
+document
+.getElementById("proteinBar")
+.style.width =
+Math.min(proteinPercent, 100) +
+"%";
+
+
+document
+.getElementById("carbBar")
+.style.width =
+Math.min(carbPercent, 100) +
+"%";
+
+
+document
+.getElementById("fatBar")
+.style.width =
+Math.min(fatPercent, 100) +
+"%";
+
+
+/* =====================================================
+   کارت نتیجه
+===================================================== */
+
+document
+.getElementById("shareCalories")
+.textContent =
 Math.round(goalLow) +
 " تا " +
 Math.round(goalHigh) +
 " کالری";
 
-document.getElementById("shareBMI").textContent =
+
+document
+.getElementById("shareBMI")
+.textContent =
 bmi.toFixed(1);
 
-document.getElementById("shareProtein").textContent =
-Math.round(macroProteinLow) +
+
+document
+.getElementById("shareProtein")
+.textContent =
+Math.round(proteinLow) +
 " تا " +
-Math.round(macroProteinHigh) +
+Math.round(proteinHigh) +
 " گرم";
 
-document.getElementById("shareCarbs").textContent =
+
+document
+.getElementById("shareCarbs")
+.textContent =
 Math.round(carbs) +
 " گرم";
 
-document.getElementById("shareFat").textContent =
+
+document
+.getElementById("shareFat")
+.textContent =
 Math.round(fat) +
 " گرم";
 
-document.getElementById("shareFiber").textContent =
+
+document
+.getElementById("shareFiber")
+.textContent =
 Math.round(fiber) +
 " گرم";
 
-document.getElementById("shareWater").textContent =
+
+document
+.getElementById("shareWater")
+.textContent =
 (water / 1000).toFixed(1) +
 " لیتر";
-document.getElementById("shareBMI").textContent =
-bmi.toFixed(1);
-
-document.getElementById("shareProtein").textContent =
-Math.round(macroProteinLow) +
-" تا " +
-Math.round(macroProteinHigh) +
-" گرم";
-
-document.getElementById("shareCarbs").textContent =
-Math.round(carbs) +
-" گرم";
-
-document.getElementById("shareFat").textContent =
-Math.round(fat) +
-" گرم";
-
-document.getElementById("shareFiber").textContent =
-Math.round(fiber) +
-" گرم";
-
-document.getElementById("shareWater").textContent =
-(water / 1000).toFixed(1) +
-" لیتر";
-  
-document.getElementById("proteinPercent").textContent =
-Math.round(proteinPercent) + "%";
-
-document.getElementById("carbPercent").textContent =
-Math.round(carbPercent) + "%";
-
-document.getElementById("fatPercent").textContent =
-Math.round(fatPercent) + "%";
 
 
-document.getElementById("proteinBar").style.width =
-Math.round(proteinPercent) + "%";
+/* =====================================================
+   نمایش نتیجه
+===================================================== */
 
-document.getElementById("carbBar").style.width =
-Math.round(carbPercent) + "%";
-
-document.getElementById("fatBar").style.width =
-Math.round(fatPercent) + "%";
-  
-document.getElementById("result").style.display =
+document
+.getElementById("result")
+.style.display =
 "block";
 
 
-document.getElementById("result").scrollIntoView({
+document
+.getElementById("result")
+.scrollIntoView({
 behavior: "smooth"
 });
 
+
+}
+);
+
+
+/* =====================================================
+   محاسبه مجدد
+===================================================== */
+
+document
+.getElementById("resetButton")
+.addEventListener(
+"click",
+function() {
+
+
+document
+.getElementById("calorieForm")
+.reset();
+
+
+document
+.getElementById("result")
+.style.display =
+"none";
+
+
+window.scrollTo({
+top: 0,
+behavior: "smooth"
 });
 
 
-document.getElementById("resetButton").addEventListener(
-"click",
-function() {
-
-document.getElementById("calorieForm").reset();
-
-document.getElementById("result").style.display =
-"none";
-
 }
 );
 
-document.getElementById("shareButton").addEventListener(
+
+/* =====================================================
+   اشتراک در تلگرام
+===================================================== */
+
+document
+.getElementById("shareButton")
+.addEventListener(
 "click",
 function() {
 
+
 var bmr =
-document.getElementById("bmr").textContent;
+document
+.getElementById("bmr")
+.textContent;
+
 
 var tdee =
-document.getElementById("tdee").textContent;
+document
+.getElementById("tdee")
+.textContent;
+
 
 var goalCalories =
-document.getElementById("goalCalories").textContent;
+document
+.getElementById("goalCalories")
+.textContent;
+
 
 var bmi =
-document.getElementById("bmi").textContent;
+document
+.getElementById("bmi")
+.textContent;
 
-var bmiStatus =
-document.getElementById("bmiStatus").textContent;
 
 var protein =
-document.getElementById("protein").textContent;
+document
+.getElementById("macroProtein")
+.textContent;
+
+
+var carbs =
+document
+.getElementById("carbs")
+.textContent;
+
+
+var fat =
+document
+.getElementById("fat")
+.textContent;
+
+
+var fiber =
+document
+.getElementById("fiber")
+.textContent;
+
 
 var water =
-document.getElementById("water").textContent;
+document
+.getElementById("water")
+.textContent;
 
 
 var text =
+
 "🌿 نیروانا\n\n" +
-"🔥 BMR: " + bmr + "\n" +
-"⚡ کالری حفظ وزن: " + tdee + "\n" +
-"🎯 کالری پیشنهادی: " + goalCalories + "\n" +
-"⚖️ BMI: " + bmi + " — " + bmiStatus + "\n" +
-"🥩 پروتئین: " + protein + "\n" +
-"💧 آب: " + water + "\n\n" +
-"محاسبه شده با محاسبه‌گر نیروانا 🌿";
+
+"🎯 نتیجه محاسبه کالری\n\n" +
+
+"🔥 کالری حفظ وزن: " +
+tdee +
+"\n" +
+
+"🎯 کالری هدف: " +
+goalCalories +
+"\n" +
+
+"⚖️ BMI: " +
+bmi +
+"\n\n" +
+
+"🥗 درشت‌مغذی‌ها\n" +
+
+"🥩 پروتئین: " +
+protein +
+"\n" +
+
+"🍚 کربوهیدرات: " +
+carbs +
+"\n" +
+
+"🥑 چربی: " +
+fat +
+"\n" +
+
+"🌾 فیبر: " +
+fiber +
+"\n" +
+
+"💧 آب: " +
+water +
+"\n\n" +
+
+"🌿 محاسبه شده با نیروانا";
 
 
 var url =
+
 "https://t.me/share/url?url=" +
-encodeURIComponent(window.location.href) +
+
+encodeURIComponent(
+window.location.href
+) +
+
 "&text=" +
-encodeURIComponent(text);
+
+encodeURIComponent(
+text
+);
 
 
-window.open(url, "_blank");
+window.open(
+url,
+"_blank"
+);
+
 
 }
 );
-  
+
+
 </script>
 
+
 </body>
+
 </html>
