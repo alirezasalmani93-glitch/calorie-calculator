@@ -753,6 +753,17 @@ carbCalories / 4;
 var fiber =
 (targetCalories / 1000) * 14; 
 
+ /* درصد انرژی درشت‌مغذی‌ها */
+
+var proteinPercent =
+(proteinCalories / targetCalories) * 100;
+
+var fatPercent =
+(fatCalories / targetCalories) * 100;
+
+var carbPercent =
+(carbCalories / targetCalories) * 100; 
+
 /* نمایش نتایج */
 
 document.getElementById("bmr").textContent =
