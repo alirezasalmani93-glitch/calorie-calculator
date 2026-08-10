@@ -817,6 +817,25 @@ Math.round(fat) +
 document.getElementById("fiber").textContent =
 Math.round(fiber) +
 " گرم";
+
+document.getElementById("proteinPercent").textContent =
+Math.round(proteinPercent) + "%";
+
+document.getElementById("carbPercent").textContent =
+Math.round(carbPercent) + "%";
+
+document.getElementById("fatPercent").textContent =
+Math.round(fatPercent) + "%";
+
+
+document.getElementById("proteinBar").style.width =
+Math.round(proteinPercent) + "%";
+
+document.getElementById("carbBar").style.width =
+Math.round(carbPercent) + "%";
+
+document.getElementById("fatBar").style.width =
+Math.round(fatPercent) + "%";
   
 document.getElementById("result").style.display =
 "block";
