@@ -724,7 +724,27 @@ document.getElementById("water").textContent =
 (water / 1000).toFixed(1) +
 " لیتر";
 
+document.getElementById("macroProtein").textContent =
+Math.round(macroProteinLow) +
+" تا " +
+Math.round(macroProteinHigh) +
+" گرم";
 
+
+document.getElementById("carbs").textContent =
+Math.round(carbs) +
+" گرم";
+
+
+document.getElementById("fat").textContent =
+Math.round(fat) +
+" گرم";
+
+
+document.getElementById("fiber").textContent =
+Math.round(fiber) +
+" گرم";
+  
 document.getElementById("result").style.display =
 "block";
 
