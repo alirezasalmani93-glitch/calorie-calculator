@@ -1,193 +1,185 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>نیروانا | محاسبه کالری</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نیروانا | محاسبه‌گر کالری</title>
 
 <style>
-
-*{
-box-sizing:border-box;
-font-family:Tahoma,Arial,sans-serif;
+* {
+  box-sizing: border-box;
+  font-family: Tahoma, Arial, sans-serif;
 }
 
-body{
-margin:0;
-background:#f3f6f4;
-color:#222;
+body {
+  margin: 0;
+  background: #f3f6f4;
+  color: #222;
 }
 
-.container{
-max-width:520px;
-margin:auto;
-padding:18px;
+.container {
+  max-width: 520px;
+  margin: auto;
+  padding: 18px;
 }
 
-.card{
-background:#fff;
-border-radius:22px;
-padding:22px;
-box-shadow:0 5px 25px rgba(0,0,0,.08);
+.card {
+  background: #fff;
+  border-radius: 22px;
+  padding: 22px;
+  box-shadow: 0 5px 25px rgba(0,0,0,.08);
 }
 
-.logo{
-text-align:center;
-font-size:35px;
+.logo {
+  text-align: center;
+  font-size: 36px;
 }
 
-.brand{
-text-align:center;
-font-size:27px;
-font-weight:bold;
-margin-top:5px;
+.brand {
+  text-align: center;
+  font-size: 27px;
+  font-weight: bold;
+  margin-top: 5px;
 }
 
-.subtitle{
-text-align:center;
-color:#777;
-font-size:13px;
-line-height:1.8;
-margin:8px 0 25px;
+.subtitle {
+  text-align: center;
+  color: #777;
+  font-size: 13px;
+  line-height: 1.8;
+  margin: 8px 0 25px;
 }
 
-label{
-display:block;
-font-weight:bold;
-margin-top:17px;
-margin-bottom:7px;
+label.title-label {
+  display: block;
+  font-weight: bold;
+  margin-top: 17px;
+  margin-bottom: 7px;
 }
 
-input,
-select{
-width:100%;
-padding:14px;
-border:1px solid #ddd;
-border-radius:12px;
-font-size:16px;
-background:#fff;
+input[type="number"],
+select {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  font-size: 16px;
+  background: #fff;
 }
 
-.gender{
-display:flex;
-gap:10px;
+.gender {
+  display: flex;
+  gap: 10px;
 }
 
-.gender label{
-margin:0;
-flex:1;
+.gender label {
+  flex: 1;
+  margin: 0;
 }
 
-.gender input{
-display:none;
+.gender input {
+  display: none;
 }
 
-.gender span{
-display:block;
-text-align:center;
-padding:14px;
-border:2px solid #ddd;
-border-radius:12px;
-cursor:pointer;
-font-size:16px;
+.gender span {
+  display: block;
+  text-align: center;
+  padding: 14px;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 16px;
 }
 
-.gender input:checked + span{
-border-color:#278a5b;
-background:#edf8f1;
+.gender input:checked + span {
+  border-color: #278a5b;
+  background: #edf8f1;
 }
 
-.calculate{
-width:100%;
-margin-top:25px;
-padding:16px;
-border:0;
-border-radius:14px;
-background:#278a5b;
-color:white;
-font-size:18px;
-font-weight:bold;
-cursor:pointer;
+.calculate {
+  width: 100%;
+  margin-top: 25px;
+  padding: 16px;
+  border: 0;
+  border-radius: 14px;
+  background: #278a5b;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-#result{
-display:none;
-margin-top:25px;
+.result {
+  display: none;
+  margin-top: 25px;
 }
 
-.title{
-text-align:center;
-font-size:21px;
-font-weight:bold;
-margin-bottom:15px;
+.result-title {
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 16px;
 }
 
-.box{
-background:#f6f8f7;
-border-radius:14px;
-padding:15px;
-margin-bottom:10px;
+.box {
+  background: #f6f8f7;
+  border-radius: 14px;
+  padding: 15px;
+  margin-bottom: 10px;
 }
 
-.box strong{
-display:block;
-font-size:21px;
-margin-top:6px;
+.box strong {
+  display: block;
+  font-size: 21px;
+  margin-top: 6px;
 }
 
-.main{
-background:#edf8f1;
-border:1px solid #d5eddf;
+.main-result {
+  background: #edf8f1;
+  border: 1px solid #d5eddf;
 }
 
-.small{
-font-size:13px;
-color:#777;
-margin-top:5px;
-line-height:1.7;
+.small {
+  display: block;
+  font-size: 13px;
+  color: #777;
+  margin-top: 6px;
+  line-height: 1.8;
 }
 
-.warning{
-margin-top:18px;
-padding:13px;
-border-radius:12px;
-background:#fff8e5;
-color:#665500;
-font-size:12px;
-line-height:2;
+.warning {
+  margin-top: 18px;
+  padding: 13px;
+  border-radius: 12px;
+  background: #fff8e5;
+  color: #665500;
+  font-size: 12px;
+  line-height: 2;
 }
 
-.reset{
-width:100%;
-padding:13px;
-margin-top:10px;
-border:1px solid #ddd;
-border-radius:12px;
-background:#fff;
-font-size:15px;
+.reset {
+  width: 100%;
+  padding: 13px;
+  margin-top: 10px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background: #fff;
+  font-size: 15px;
+  cursor: pointer;
 }
 
-.footer{
-text-align:center;
-font-size:11px;
-color:#999;
-margin-top:18px;
+.footer {
+  text-align: center;
+  font-size: 11px;
+  color: #999;
+  margin-top: 18px;
 }
-
 </style>
-
 </head>
-
 
 <body>
 
 <div class="container">
-
 <div class="card">
 
 <div class="logo">🌿</div>
@@ -195,52 +187,30 @@ margin-top:18px;
 <div class="brand">نیروانا</div>
 
 <div class="subtitle">
-
 محاسبه‌گر هوشمند کالری روزانه
-
 <br>
-
 نیاز تقریبی انرژی بدن خود را محاسبه کنید.
-
 </div>
-
 
 <form id="calorieForm">
 
-
-<label>جنسیت</label>
+<label class="title-label">جنسیت</label>
 
 <div class="gender">
 
 <label>
-
-<input
-type="radio"
-name="gender"
-value="male">
-
+<input type="radio" name="gender" value="male">
 <span>👨 مرد</span>
-
 </label>
 
-
 <label>
-
-<input
-type="radio"
-name="gender"
-value="female">
-
+<input type="radio" name="gender" value="female">
 <span>👩 زن</span>
-
 </label>
 
 </div>
 
-
-<label for="age">
-سن
-</label>
+<label class="title-label" for="age">سن</label>
 
 <input
 id="age"
@@ -250,10 +220,7 @@ max="100"
 placeholder="مثلاً 35"
 required>
 
-
-<label for="height">
-قد (سانتی‌متر)
-</label>
+<label class="title-label" for="height">قد (سانتی‌متر)</label>
 
 <input
 id="height"
@@ -263,10 +230,7 @@ max="230"
 placeholder="مثلاً 175"
 required>
 
-
-<label for="weight">
-وزن (کیلوگرم)
-</label>
+<label class="title-label" for="weight">وزن (کیلوگرم)</label>
 
 <input
 id="weight"
@@ -276,18 +240,13 @@ max="300"
 placeholder="مثلاً 80"
 required>
 
-
-<label for="activity">
+<label class="title-label" for="activity">
 سطح فعالیت
 </label>
 
-<select
-id="activity"
-required>
+<select id="activity" required>
 
-<option value="">
-انتخاب کنید
-</option>
+<option value="">انتخاب کنید</option>
 
 <option value="1.2">
 🛋 کم‌تحرک — ورزش بسیار کم
@@ -311,18 +270,13 @@ required>
 
 </select>
 
-
-<label for="goal">
+<label class="title-label" for="goal">
 هدف شما
 </label>
 
-<select
-id="goal"
-required>
+<select id="goal" required>
 
-<option value="">
-انتخاب کنید
-</option>
+<option value="">انتخاب کنید</option>
 
 <option value="lose">
 📉 کاهش وزن
@@ -338,7 +292,6 @@ required>
 
 </select>
 
-
 <button
 type="submit"
 class="calculate">
@@ -350,12 +303,11 @@ class="calculate">
 </form>
 
 
-<div id="result">
+<div id="result" class="result">
 
-<div class="title">
+<div class="result-title">
 🎯 نتیجه شما
 </div>
-
 
 <div class="box">
 
@@ -363,12 +315,11 @@ class="calculate">
 
 <strong id="bmr"></strong>
 
-<div class="small">
+<span class="small">
 انرژی موردنیاز تقریبی بدن در حالت استراحت
-</div>
+</span>
 
 </div>
-
 
 <div class="box">
 
@@ -376,26 +327,24 @@ class="calculate">
 
 <strong id="tdee"></strong>
 
-<div class="small">
-کالری تقریبی موردنیاز برای ثابت ماندن وزن
-</div>
+<span class="small">
+نیاز تقریبی روزانه برای ثابت ماندن وزن
+</span>
 
 </div>
 
-
-<div class="box main">
+<div class="box main-result">
 
 🎯 کالری پیشنهادی برای هدف شما
 
 <strong id="goalCalories"></strong>
 
-<div
+<span
 class="small"
 id="goalDescription">
-</div>
+</span>
 
 </div>
-
 
 <div class="box">
 
@@ -403,13 +352,12 @@ id="goalDescription">
 
 <strong id="bmi"></strong>
 
-<div
+<span
 class="small"
 id="bmiStatus">
-</div>
+</span>
 
 </div>
-
 
 <div class="box">
 
@@ -419,7 +367,6 @@ id="bmiStatus">
 
 </div>
 
-
 <div class="box">
 
 💧 آب پیشنهادی روزانه
@@ -428,22 +375,20 @@ id="bmiStatus">
 
 </div>
 
-
 <div class="warning">
 
 ⚠️ توجه:
 
 این محاسبات تقریبی هستند و جایگزین تشخیص پزشک یا برنامه اختصاصی متخصص تغذیه نیستند.
 
-نیاز واقعی انرژی هر فرد می‌تواند تحت تأثیر شرایط پزشکی، داروها، ترکیب بدن و میزان فعالیت متفاوت باشد.
+نیاز واقعی انرژی هر فرد می‌تواند تحت تأثیر شرایط پزشکی، داروها، ترکیب بدن، میزان فعالیت و عوامل دیگر متفاوت باشد.
 
 </div>
 
-
 <button
 type="button"
-class="reset"
-id="resetButton">
+id="resetButton"
+class="reset">
 
 🔄 محاسبه مجدد
 
@@ -453,222 +398,179 @@ id="resetButton">
 
 
 <div class="footer">
-
 🌿 نیروانا
-
 </div>
 
 </div>
-
 </div>
 
 
 <script>
 
-document
-.getElementById("calorieForm")
-.addEventListener("submit", function(event){
+document.getElementById("calorieForm").addEventListener(
+"submit",
+function(event) {
 
 event.preventDefault();
-
 
 var genderElement =
 document.querySelector(
 'input[name="gender"]:checked'
 );
 
-
-if(!genderElement){
-
+if (!genderElement) {
 alert("لطفاً جنسیت خود را انتخاب کنید.");
-
 return;
-
 }
 
-
-var gender =
-genderElement.value;
-
-
 var age =
-Number(
-document.getElementById("age").value
-);
-
+Number(document.getElementById("age").value);
 
 var height =
-Number(
-document.getElementById("height").value
-);
-
+Number(document.getElementById("height").value);
 
 var weight =
-Number(
-document.getElementById("weight").value
-);
-
+Number(document.getElementById("weight").value);
 
 var activity =
-Number(
-document.getElementById("activity").value
-);
-
+Number(document.getElementById("activity").value);
 
 var goal =
 document.getElementById("goal").value;
 
-
-if(
+if (
 age <= 0 ||
 height <= 0 ||
 weight <= 0 ||
-!activity ||
-!goal
-){
-
-alert(
-"لطفاً تمام اطلاعات را کامل وارد کنید."
-);
-
+activity <= 0 ||
+goal === ""
+) {
+alert("لطفاً تمام اطلاعات را کامل وارد کنید.");
 return;
-
 }
 
 
+/* BMR */
+
 var bmr;
 
-
-if(gender === "male"){
+if (genderElement.value === "male") {
 
 bmr =
-10 * weight +
-6.25 * height -
-5 * age +
+(10 * weight) +
+(6.25 * height) -
+(5 * age) +
 5;
 
-}else{
+} else {
 
 bmr =
-10 * weight +
-6.25 * height -
-5 * age -
+(10 * weight) +
+(6.25 * height) -
+(5 * age) -
 161;
 
 }
 
 
+/* TDEE */
+
 var tdee =
 bmr * activity;
 
 
+/* هدف */
+
 var goalLow;
 var goalHigh;
-var goalCalories;
 var goalDescription;
 
-
-if(goal === "lose"){
+if (goal === "lose") {
 
 goalLow = tdee * 0.80;
 goalHigh = tdee * 0.90;
 
-goalCalories = (goalLow + goalHigh) / 2;
-
 goalDescription =
-"محدوده تقریبی برای کاهش وزن، بر اساس حدود ۱۰ تا ۲۰٪ کمتر از کالری نگهدارنده.";
+"محدوده تقریبی برای کاهش وزن؛ حدود ۱۰ تا ۲۰ درصد کمتر از کالری حفظ وزن.";
 
 }
 
-
-if(goal === "maintain"){
+else if (goal === "maintain") {
 
 goalLow = tdee * 0.95;
 goalHigh = tdee * 1.05;
-
-goalCalories = tdee;
 
 goalDescription =
 "محدوده تقریبی برای حفظ وزن فعلی.";
 
 }
 
-
-if(goal === "gain"){
+else {
 
 goalLow = tdee * 1.10;
 goalHigh = tdee * 1.15;
 
-goalCalories = (goalLow + goalHigh) / 2;
-
 goalDescription =
-"محدوده تقریبی برای افزایش وزن، بر اساس حدود ۱۰ تا ۱۵٪ بیشتر از کالری نگهدارنده.";
+"محدوده تقریبی برای افزایش وزن؛ حدود ۱۰ تا ۱۵ درصد بیشتر از کالری حفظ وزن.";
 
 }
 
-}
 
+/* BMI */
 
 var heightMeter =
 height / 100;
 
-
 var bmi =
-weight /
-(heightMeter * heightMeter);
-
+weight / (heightMeter * heightMeter);
 
 var bmiStatus;
 
+if (bmi < 18.5) {
 
-if(bmi < 18.5){
-
-bmiStatus =
-"کمبود وزن";
+bmiStatus = "کمبود وزن";
 
 }
 
-else if(bmi < 25){
+else if (bmi < 25) {
 
-bmiStatus =
-"محدوده معمول";
-
-}
-
-else if(bmi < 30){
-
-bmiStatus =
-"اضافه‌وزن";
+bmiStatus = "محدوده معمول";
 
 }
 
-else{
+else if (bmi < 30) {
 
-bmiStatus =
-"چاقی";
+bmiStatus = "اضافه‌وزن";
 
 }
+
+else {
+
+bmiStatus = "چاقی";
+
+}
+
+
+/* پروتئین */
 
 var proteinLow;
-  
 var proteinHigh;
 
-
-if(goal === "lose"){
+if (goal === "lose") {
 
 proteinLow = weight * 1.4;
 proteinHigh = weight * 1.8;
 
 }
 
-else if(goal === "gain"){
+else if (goal === "gain") {
 
 proteinLow = weight * 1.6;
 proteinHigh = weight * 2.0;
 
 }
 
-else{
+else {
 
 proteinLow = weight * 1.2;
 proteinHigh = weight * 1.6;
@@ -676,87 +578,70 @@ proteinHigh = weight * 1.6;
 }
 
 
+/* آب */
+
 var water =
 weight * 35;
 
 
-document.getElementById("bmr")
-.textContent =
-Math.round(bmr) +
+/* نمایش نتایج */
+
+document.getElementById("bmr").textContent =
+Math.round(bmr) + " کالری";
+
+document.getElementById("tdee").textContent =
+Math.round(tdee) + " کالری";
+
+document.getElementById("goalCalories").textContent =
+Math.round(goalLow) +
+" تا " +
+Math.round(goalHigh) +
 " کالری";
 
-
-document.getElementById("tdee")
-.textContent =
-Math.round(tdee) +
-" کالری";
-
-
-document.getElementById("goalCalories")
-.textContent =
-Math.round(goalCalories) +
-" کالری";
-
-
-document.getElementById("goalDescription")
-.textContent =
+document.getElementById("goalDescription").textContent =
 goalDescription;
 
-
-document.getElementById("bmi")
-.textContent =
+document.getElementById("bmi").textContent =
 bmi.toFixed(1);
 
-
-document.getElementById("bmiStatus")
-.textContent =
+document.getElementById("bmiStatus").textContent =
 bmiStatus;
 
-
-document.getElementById("protein")
-.textContent =
+document.getElementById("protein").textContent =
 Math.round(proteinLow) +
 " تا " +
 Math.round(proteinHigh) +
 " گرم";
 
-
-document.getElementById("water")
-.textContent =
+document.getElementById("water").textContent =
 (water / 1000).toFixed(1) +
 " لیتر";
 
 
-document.getElementById("result")
-.style.display =
+document.getElementById("result").style.display =
 "block";
 
 
-document.getElementById("result")
-.scrollIntoView({
-behavior:"smooth"
+document.getElementById("result").scrollIntoView({
+behavior: "smooth"
 });
 
 });
 
 
-document
-.getElementById("resetButton")
-.addEventListener("click", function(){
+document.getElementById("resetButton").addEventListener(
+"click",
+function() {
 
-document
-.getElementById("calorieForm")
-.reset();
+document.getElementById("calorieForm").reset();
 
-
-document.getElementById("result")
-.style.display =
+document.getElementById("result").style.display =
 "none";
 
-});
+}
+);
 
 </script>
 
 </body>
-
 </html>
