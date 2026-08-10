@@ -562,41 +562,49 @@ var tdee =
 bmr * activity;
 
 
+var goalLow;
+var goalHigh;
 var goalCalories;
-
-
 var goalDescription;
 
 
 if(goal === "lose"){
 
-goalCalories =
-tdee * 0.85;
+goalLow = tdee * 0.80;
+goalHigh = tdee * 0.90;
+
+goalCalories = (goalLow + goalHigh) / 2;
 
 goalDescription =
-"حدود ۱۵٪ کمتر از کالری نگهدارنده برای کاهش وزن.";
+"محدوده تقریبی برای کاهش وزن، بر اساس حدود ۱۰ تا ۲۰٪ کمتر از کالری نگهدارنده.";
 
 }
 
 
 if(goal === "maintain"){
 
-goalCalories =
-tdee;
+goalLow = tdee * 0.95;
+goalHigh = tdee * 1.05;
+
+goalCalories = tdee;
 
 goalDescription =
-"تقریباً برابر با کالری موردنیاز برای حفظ وزن.";
+"محدوده تقریبی برای حفظ وزن فعلی.";
 
 }
 
 
 if(goal === "gain"){
 
-goalCalories =
-tdee * 1.12;
+goalLow = tdee * 1.10;
+goalHigh = tdee * 1.15;
+
+goalCalories = (goalLow + goalHigh) / 2;
 
 goalDescription =
-"حدود ۱۲٪ بیشتر از کالری نگهدارنده برای افزایش وزن.";
+"محدوده تقریبی برای افزایش وزن، بر اساس حدود ۱۰ تا ۱۵٪ بیشتر از کالری نگهدارنده.";
+
+}
 
 }
 
