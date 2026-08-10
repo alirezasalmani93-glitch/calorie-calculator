@@ -621,6 +621,75 @@ proteinHigh = weight * 1.6;
 var water =
 weight * 35;
 
+ /* درشت‌مغذی‌ها */
+
+var targetCalories =
+(goalLow + goalHigh) / 2;
+
+
+/* پروتئین */
+
+var macroProteinLow;
+var macroProteinHigh;
+
+if (goal === "lose") {
+
+macroProteinLow = weight * 1.4;
+macroProteinHigh = weight * 1.8;
+
+}
+
+else if (goal === "gain") {
+
+macroProteinLow = weight * 1.6;
+macroProteinHigh = weight * 2.0;
+
+}
+
+else {
+
+macroProteinLow = weight * 1.2;
+macroProteinHigh = weight * 1.6;
+
+}
+
+
+/* مقدار متوسط پروتئین */
+
+var macroProtein =
+(macroProteinLow + macroProteinHigh) / 2;
+
+
+/* چربی */
+
+var fatCalories =
+targetCalories * 0.30;
+
+var fat =
+fatCalories / 9;
+
+
+/* کالری پروتئین */
+
+var proteinCalories =
+macroProtein * 4;
+
+
+/* کربوهیدرات */
+
+var carbCalories =
+targetCalories -
+proteinCalories -
+fatCalories;
+
+var carbs =
+carbCalories / 4;
+
+
+/* فیبر */
+
+var fiber =
+(targetCalories / 1000) * 14; 
 
 /* نمایش نتایج */
 
