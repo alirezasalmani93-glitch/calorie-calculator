@@ -935,6 +935,36 @@ document.getElementById("fiber").textContent =
 Math.round(fiber) +
 " گرم";
 
+document.getElementById("shareCalories").textContent =
+Math.round(goalLow) +
+" تا " +
+Math.round(goalHigh);
+
+document.getElementById("shareBMI").textContent =
+bmi.toFixed(1);
+
+document.getElementById("shareProtein").textContent =
+Math.round(macroProteinLow) +
+" تا " +
+Math.round(macroProteinHigh) +
+" گرم";
+
+document.getElementById("shareCarbs").textContent =
+Math.round(carbs) +
+" گرم";
+
+document.getElementById("shareFat").textContent =
+Math.round(fat) +
+" گرم";
+
+document.getElementById("shareFiber").textContent =
+Math.round(fiber) +
+" گرم";
+
+document.getElementById("shareWater").textContent =
+(water / 1000).toFixed(1) +
+" لیتر";
+  
 document.getElementById("proteinPercent").textContent =
 Math.round(proteinPercent) + "%";
 
