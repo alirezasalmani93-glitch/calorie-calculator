@@ -641,6 +641,55 @@ document.getElementById("result").style.display =
 }
 );
 
+document.getElementById("shareButton").addEventListener(
+"click",
+function() {
+
+var bmr =
+document.getElementById("bmr").textContent;
+
+var tdee =
+document.getElementById("tdee").textContent;
+
+var goalCalories =
+document.getElementById("goalCalories").textContent;
+
+var bmi =
+document.getElementById("bmi").textContent;
+
+var bmiStatus =
+document.getElementById("bmiStatus").textContent;
+
+var protein =
+document.getElementById("protein").textContent;
+
+var water =
+document.getElementById("water").textContent;
+
+
+var text =
+"🌿 نیروانا\n\n" +
+"🔥 BMR: " + bmr + "\n" +
+"⚡ کالری حفظ وزن: " + tdee + "\n" +
+"🎯 کالری پیشنهادی: " + goalCalories + "\n" +
+"⚖️ BMI: " + bmi + " — " + bmiStatus + "\n" +
+"🥩 پروتئین: " + protein + "\n" +
+"💧 آب: " + water + "\n\n" +
+"محاسبه شده با محاسبه‌گر نیروانا 🌿";
+
+
+var url =
+"https://t.me/share/url?url=" +
+encodeURIComponent(window.location.href) +
+"&text=" +
+encodeURIComponent(text);
+
+
+window.open(url, "_blank");
+
+}
+);
+  
 </script>
 
 </body>
