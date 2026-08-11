@@ -1941,7 +1941,331 @@ url,
 }
 );
 
+/* =====================================================
+   ساخت تصویر نتیجه
+===================================================== */
 
+document
+.getElementById("imageButton")
+.addEventListener(
+"click",
+function() {
+
+
+/* ایجاد Canvas */
+
+var canvas =
+document.createElement("canvas");
+
+var ctx =
+canvas.getContext("2d");
+
+
+canvas.width = 1080;
+
+canvas.height = 1350;
+
+
+/* پس زمینه */
+
+ctx.fillStyle = "#f3f8f5";
+
+ctx.fillRect(
+0,
+0,
+canvas.width,
+canvas.height
+);
+
+
+/* کارت اصلی */
+
+ctx.fillStyle = "#ffffff";
+
+ctx.beginPath();
+
+ctx.roundRect(
+60,
+60,
+960,
+1230,
+35,
+35
+);
+
+ctx.fill();
+
+
+/* لوگو */
+
+ctx.font =
+"70px Arial";
+
+ctx.textAlign =
+"center";
+
+ctx.fillText(
+"🌿",
+540,
+160
+);
+
+
+/* نام */
+
+ctx.fillStyle =
+"#222";
+
+ctx.font =
+"bold 52px Arial";
+
+ctx.fillText(
+"نیروانا",
+540,
+225
+);
+
+
+/* توضیح */
+
+ctx.fillStyle =
+"#777";
+
+ctx.font =
+"26px Arial";
+
+ctx.fillText(
+"نتیجه محاسبه کالری روزانه",
+540,
+270
+);
+
+
+/* خط */
+
+ctx.strokeStyle =
+"#d7ecdf";
+
+ctx.lineWidth =
+3;
+
+ctx.beginPath();
+
+ctx.moveTo(
+130,
+310
+);
+
+ctx.lineTo(
+950,
+310
+);
+
+ctx.stroke();
+
+
+/* تابع نمایش */
+
+function drawItem(
+emoji,
+title,
+value,
+y
+) {
+
+
+ctx.fillStyle =
+"#f6f8f7";
+
+ctx.beginPath();
+
+ctx.roundRect(
+120,
+y,
+840,
+100,
+20,
+20
+);
+
+ctx.fill();
+
+
+ctx.textAlign =
+"right";
+
+ctx.fillStyle =
+"#555";
+
+ctx.font =
+"28px Arial";
+
+ctx.fillText(
+emoji + " " + title,
+900,
+y + 42
+);
+
+
+ctx.fillStyle =
+"#222";
+
+ctx.font =
+"bold 32px Arial";
+
+ctx.fillText(
+value,
+900,
+y + 78
+);
+
+}
+
+
+/* اطلاعات */
+
+drawItem(
+"🔥",
+"کالری هدف",
+document
+.getElementById("shareCalories")
+.textContent,
+350
+);
+
+
+drawItem(
+"⚖️",
+"BMI",
+document
+.getElementById("shareBMI")
+.textContent,
+470
+);
+
+
+drawItem(
+"🥩",
+"پروتئین",
+document
+.getElementById("shareProtein")
+.textContent,
+590
+);
+
+
+drawItem(
+"🍚",
+"کربوهیدرات",
+document
+.getElementById("shareCarbs")
+.textContent,
+710
+);
+
+
+drawItem(
+"🥑",
+"چربی",
+document
+.getElementById("shareFat")
+.textContent,
+830
+);
+
+
+drawItem(
+"🌾",
+"فیبر",
+document
+.getElementById("shareFiber")
+.textContent,
+950
+);
+
+
+drawItem(
+"💧",
+"آب",
+document
+.getElementById("shareWater")
+.textContent,
+1070
+);
+
+
+/* فوتر */
+
+ctx.textAlign =
+"center";
+
+ctx.fillStyle =
+"#888";
+
+ctx.font =
+"24px Arial";
+
+ctx.fillText(
+"🌿 نیروانا | محاسبه‌گر کالری",
+540,
+1235
+);
+
+
+/* تبدیل Canvas به تصویر */
+
+canvas.toBlob(
+function(blob) {
+
+
+var url =
+URL.createObjectURL(blob);
+
+
+/* ایجاد لینک */
+
+var a =
+document.createElement("a");
+
+a.href =
+url;
+
+a.download =
+"nirvana-calorie-result.png";
+
+
+a.textContent =
+"دانلود تصویر";
+
+
+a.style.display =
+"none";
+
+
+document
+.body
+.appendChild(a);
+
+
+a.click();
+
+
+document
+.body
+.removeChild(a);
+
+
+URL.revokeObjectURL(url);
+
+
+},
+"image/png"
+);
+
+
+}
+);
+   
 </script>
 
 
