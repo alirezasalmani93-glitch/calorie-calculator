@@ -1491,7 +1491,7 @@ select:focus {
 ================================================= -->
 
 <a
-  href="https://t.me/yoga_nirvana_a"
+  href="https://t.me/CHANNEL_USERNAME"
   target="_blank"
   class="channel-button"
 >
@@ -2669,4 +2669,450 @@ function createResultCanvas() {
 
   ctx.fillText(
     "🌿 نیروانا | محاسبه‌گر کالری",
-    540
+    540,
+    1235
+  );
+
+
+  return canvas;
+
+}
+
+
+/* =====================================================
+   Create Image Button
+===================================================== */
+
+getElement("imageButton")
+.addEventListener(
+  "click",
+  function() {
+
+    var calories =
+      getElement(
+        "shareCalories"
+      ).textContent;
+
+
+    if (!calories) {
+
+      alert(
+        "لطفاً ابتدا محاسبه را انجام دهید."
+      );
+
+      return;
+
+    }
+
+
+    var canvas =
+      createResultCanvas();
+
+
+    canvas.toBlob(
+      function(blob) {
+
+        if (!blob) {
+
+          alert(
+            "ساخت تصویر با مشکل مواجه شد."
+          );
+
+          return;
+
+        }
+
+
+        var url =
+          URL.createObjectURL(
+            blob
+          );
+
+
+        var a =
+          document.createElement(
+            "a"
+          );
+
+
+        a.href =
+          url;
+
+
+        a.download =
+          "nirvana-calorie-result.png";
+
+
+        document.body.appendChild(
+          a
+        );
+
+
+        a.click();
+
+
+        document.body.removeChild(
+          a
+        );
+
+
+        setTimeout(
+          function() {
+
+            URL.revokeObjectURL(
+              url
+            );
+
+          },
+          1000
+        );
+
+      },
+      "image/png"
+    );
+
+  }
+);
+
+
+/* =====================================================
+   Share Image
+===================================================== */
+
+getElement("shareImageButton")
+.addEventListener(
+  "click",
+  function() {
+
+    var calories =
+      getElement(
+        "shareCalories"
+      ).textContent;
+
+
+    if (!calories) {
+
+      alert(
+        "لطفاً ابتدا محاسبه را انجام دهید."
+      );
+
+      return;
+
+    }
+
+
+    var canvas =
+      createResultCanvas();
+
+
+    canvas.toBlob(
+      async function(blob) {
+
+        if (!blob) {
+
+          alert(
+            "ساخت تصویر با مشکل مواجه شد."
+          );
+
+          return;
+
+        }
+
+
+        var file =
+          new File(
+            [blob],
+            "nirvana-calorie-result.png",
+            {
+              type:
+                "image/png"
+            }
+          );
+
+
+        /* Native share */
+
+        if (
+          navigator.share &&
+          navigator.canShare &&
+          navigator.canShare({
+            files: [file]
+          })
+        ) {
+
+          try {
+
+            await navigator.share({
+
+              title:
+                "نتیجه محاسبه نیروانا",
+
+              text:
+                "🌿 نتیجه محاسبه کالری با نیروانا",
+
+              files:
+                [file]
+
+            });
+
+          }
+
+          catch (error) {
+
+            if (
+              error.name !==
+              "AbortError"
+            ) {
+
+              alert(
+                "اشتراک‌گذاری تصویر در این محیط پشتیبانی نمی‌شود."
+              );
+
+            }
+
+          }
+
+        }
+
+        else {
+
+          /* Fallback download */
+
+          var url =
+            URL.createObjectURL(
+              blob
+            );
+
+
+          var a =
+            document.createElement(
+              "a"
+            );
+
+
+          a.href =
+            url;
+
+
+          a.download =
+            "nirvana-calorie-result.png";
+
+
+          document.body.appendChild(
+            a
+          );
+
+
+          a.click();
+
+
+          document.body.removeChild(
+            a
+          );
+
+
+          setTimeout(
+            function() {
+
+              URL.revokeObjectURL(
+                url
+              );
+
+            },
+            1000
+          );
+
+
+          alert(
+            "اشتراک مستقیم تصویر در این محیط پشتیبانی نمی‌شود؛ تصویر ذخیره شد و می‌توانید آن را از گالری به اشتراک بگذارید."
+          );
+
+        }
+
+      },
+      "image/png"
+    );
+
+  }
+);
+
+
+/* =====================================================
+   Telegram Theme Handling
+===================================================== */
+
+function applyTelegramTheme() {
+
+  if (
+    !tg
+  ) {
+
+    return;
+
+  }
+
+
+  var params =
+    tg.themeParams || {};
+
+
+  var root =
+    document.documentElement;
+
+
+  if (
+    params.bg_color
+  ) {
+
+    root.style.setProperty(
+      "--tg-bg",
+      params.bg_color
+    );
+
+  }
+
+
+  if (
+    params.secondary_bg_color
+  ) {
+
+    root.style.setProperty(
+      "--tg-secondary-bg",
+      params.secondary_bg_color
+    );
+
+  }
+
+
+  if (
+    params.section_bg_color
+  ) {
+
+    root.style.setProperty(
+      "--tg-section-bg",
+      params.section_bg_color
+    );
+
+  }
+
+
+  if (
+    params.text_color
+  ) {
+
+    root.style.setProperty(
+      "--tg-text",
+      params.text_color
+    );
+
+  }
+
+
+  if (
+    params.hint_color
+  ) {
+
+    root.style.setProperty(
+      "--tg-hint",
+      params.hint_color
+    );
+
+  }
+
+
+  if (
+    params.button_color
+  ) {
+
+    root.style.setProperty(
+      "--tg-button",
+      params.button_color
+    );
+
+  }
+
+
+  if (
+    params.button_text_color
+  ) {
+
+    root.style.setProperty(
+      "--tg-button-text",
+      params.button_text_color
+    );
+
+  }
+
+
+  if (
+    params.link_color
+  ) {
+
+    root.style.setProperty(
+      "--tg-link",
+      params.link_color
+    );
+
+  }
+
+
+  /* Telegram header */
+
+  if (
+    tg.setHeaderColor &&
+    params.bg_color
+  ) {
+
+    tg.setHeaderColor(
+      params.bg_color
+    );
+
+  }
+
+
+  /* Telegram background */
+
+  if (
+    tg.setBackgroundColor &&
+    params.bg_color
+  ) {
+
+    tg.setBackgroundColor(
+      params.bg_color
+    );
+
+  }
+
+}
+
+
+/* Apply initial theme */
+
+applyTelegramTheme();
+
+
+/* Update theme when Telegram changes it */
+
+if (
+  tg &&
+  tg.onEvent
+) {
+
+  tg.onEvent(
+    "themeChanged",
+    function() {
+
+      applyTelegramTheme();
+
+    }
+  );
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
