@@ -2709,6 +2709,62 @@ async function() {
   );
 
 });
+
+/* =====================================================
+   Telegram Mini App Theme
+===================================================== */
+
+if (
+  window.Telegram &&
+  window.Telegram.WebApp
+) {
+
+  var tg =
+    window.Telegram.WebApp;
+
+
+  /* آماده‌سازی Mini App */
+
+  tg.ready();
+
+
+  /* درخواست نمایش کامل‌تر */
+
+  if (
+    tg.expand
+  ) {
+
+    tg.expand();
+
+  }
+
+
+  /* هماهنگ کردن رنگ‌ها */
+
+  if (
+    tg.setHeaderColor
+  ) {
+
+    tg.setHeaderColor(
+      tg.themeParams.bg_color ||
+      "#f3f6f4"
+    );
+
+  }
+
+
+  if (
+    tg.setBackgroundColor
+  ) {
+
+    tg.setBackgroundColor(
+      tg.themeParams.bg_color ||
+      "#f3f6f4"
+    );
+
+  }
+
+}
    
 </script>
 
